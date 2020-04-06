@@ -14,22 +14,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/idTxtNombreServicio"
+            android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/hello_blank_fragment"
-            android:textAlignment="center"
-            android:textSize="20sp"
+            android:text="    Orden Servicio 20102"
             android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/idIvServicioDetalle"
-            android:layout_width="match_parent"
-            android:layout_height="206dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
 
         <TextView
             android:id="@+id/idTxtDetalle"
@@ -38,16 +27,24 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="TextView" />
+            android:text=" Tiempo de conclusion: 60 min"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/lavadopremium" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/btnReservar"
-            android:textColor="#FFFFFF" />
+            android:enabled="true"
+            android:onClick="Volver"
+            android:text="Regresar"
+            android:textColor="#DC0F0F" />
 
     </LinearLayout>
 

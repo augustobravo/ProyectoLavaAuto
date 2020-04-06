@@ -15,23 +15,23 @@ import com.example.lavaauto.ui.entidad.EDetalleServicio;
 
 public class DetalleServicioFragment extends Fragment {
 
-    EDetalleServicio eDetalleSericio;
+    EDetalleServicio eDetalleServicio;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_detalle_estado, container, false);
                 // Inflate the layout for this fragmen
-        TextView txtNombreServicioDetalle = (TextView)view.findViewById(R.id.idTxtNombreServicio);
-        ImageView ImvServicioDetalle = (ImageView)view.findViewById(R.id.idIvServicioDetalle);
+        TextView txtNombreServicioDetalle = (TextView)view.findViewById(R.id.idTxtDesDomicilio);
+        ImageView ImvServicioDetalle = (ImageView)view.findViewById(R.id.idIvServicio);
         TextView txtDetalleServicio = (TextView)view.findViewById(R.id.idTxtDetalle);
 
-        txtNombreServicioDetalle.setText(eDetalleSericio.getNombre());
-        ImvServicioDetalle.setImageResource(eDetalleSericio.getIdImagen());
-        txtDetalleServicio.setText(eDetalleSericio.getDetalle());
+        txtNombreServicioDetalle.setText(eDetalleServicio.getNombre());
+        ImvServicioDetalle.setImageResource(eDetalleServicio.getIdImagen());
+        txtDetalleServicio.setText(eDetalleServicio.getDetalle());
         return view;
     }
 
     public void setDetalleServicio(EDetalleServicio eDetalleServicio){
-        this.eDetalleSericio = eDetalleServicio;
+        this.eDetalleServicio = eDetalleServicio;
     }
 }
