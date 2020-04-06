@@ -18,21 +18,22 @@
             <ImageButton
                 android:id="@+id/imageButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
                 android:layout_span="1"
                 android:src="@mipmap/mapa" />
 
             <ImageButton
                 android:id="@+id/imageButton2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_span="1"
                 android:src="@mipmap/carro" />
 
             <ImageButton
                 android:id="@+id/imageButton3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_span="1"
                 android:src="@mipmap/calendario" />
 
@@ -40,6 +41,7 @@
                 android:id="@+id/imageButton4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
                 android:layout_span="1"
                 android:src="@mipmap/pago" />
         </TableRow>
@@ -54,7 +56,7 @@
                 android:layout_width="422dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="15dp"
                 android:layout_span="4"
                 android:text="@string/txtTituloVehiculo"
                 android:textAlignment="center"
@@ -65,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/textView5"
@@ -77,17 +79,17 @@
             <EditText
                 android:id="@+id/editText"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="40dp"
+                android:layout_span="2"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/textView6"
@@ -110,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/textView7"
@@ -122,10 +124,10 @@
             <EditText
                 android:id="@+id/editText2"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="40dp"
+                android:layout_span="2"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -147,10 +149,11 @@
             android:layout_height="match_parent">
 
             <ListView
-                android:id="@+id/idLvDomicilio"
+                android:id="@+id/idLvAuto"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginLeft="10dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
                 android:layout_span="4" />
         </TableRow>
 
@@ -160,20 +163,23 @@
             android:gravity="center">
 
             <Button
+                android:id="@+id/idBtnAtras"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_span="2"
                 android:background="@color/colorPrimary"
                 android:text="@string/btnAtras"
                 android:textColor="#FFFFFF" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/idBtnSiguiente1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="10dp"
+                android:layout_span="2"
                 android:background="@color/colorPrimary"
                 android:text="@string/btnSiguiente"
                 android:textColor="#FFFFFF" />
