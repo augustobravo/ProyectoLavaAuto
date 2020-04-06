@@ -23,6 +23,7 @@
     <string name="txtNombreServicio">Servicio:</string>
     <string name="btnAgregarDireccion">+ Dirección</string>
     <string name="btnSiguiente">Siguiente</string>
+    <string name="btnAtras">Atras</string>
 
     <string name="txtTituloVehiculo">¿Para quien lo quieres?,Escoge un Vehículo.</string>
     <string name="txtNombreCliente">Nombre Cliente:</string>
