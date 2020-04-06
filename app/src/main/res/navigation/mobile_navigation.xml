@@ -34,5 +34,5 @@
         android:id="@+id/nav_detalle_servicio"
         android:name="com.example.lavaauto.ui.servicio.DetalleServicioFragment"
         android:label="@string/menu_detalle_servicio"
-        tools:layout="@layout/fragment_detalle_servicio" />
+        tools:layout="@layout/fragment_detalle_estado" />
 </navigation>
