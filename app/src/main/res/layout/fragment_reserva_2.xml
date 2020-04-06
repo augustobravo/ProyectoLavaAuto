@@ -139,7 +139,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="20dp"
                 android:background="#8A8585"
-                android:text="@string/btnAgregarDireccion"
+                android:text="@string/btnAgregarAuto"
                 android:textColor="#FFFFFF" />
         </TableRow>
         <TableRow
@@ -160,12 +160,23 @@
             android:gravity="center">
 
             <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/btnAtras"
+                android:textColor="#FFFFFF" />
+
+            <Button
                 android:id="@+id/button4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="10dp"
                 android:background="@color/colorPrimary"
-                android:textColor="#FFFFFF"
-                android:text="@string/btnSiguiente" />
+                android:text="@string/btnSiguiente"
+                android:textColor="#FFFFFF" />
         </TableRow>
 
     </TableLayout>
