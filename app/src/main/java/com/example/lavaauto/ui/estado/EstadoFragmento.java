@@ -17,12 +17,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.lavaauto.R;
-import com.example.lavaauto.ui.entidad.EDetalleServicio;
+import com.example.lavaauto.ui.entidad.EDetalleEstado;
 
 import java.util.ArrayList;
 
 public class EstadoFragmento extends Fragment {
-    private ArrayList<EDetalleServicio> listarOrdenServicios;
+    private ArrayList<EDetalleEstado> listarOrdenServicios;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,14 +30,14 @@ public class EstadoFragmento extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_servicio, container, false);
 
-        listarOrdenServicios =new ArrayList<EDetalleServicio>();
-        listarOrdenServicios.add(new EDetalleServicio("Orden Servicio 20102", "estado_pendiente"));
-        listarOrdenServicios.add(new EDetalleServicio("Orden Servicio 20105", "estado_progreso"));
-        listarOrdenServicios.add(new EDetalleServicio("Orden Servicio 20110", "Estado_completada"));
-        listarOrdenServicios.add(new EDetalleServicio("Orden Servicio 20111", "Estado_completada"));
-        listarOrdenServicios.add(new EDetalleServicio("Orden Servicio 20112", "Estado_completada"));
-        listarOrdenServicios.add(new EDetalleServicio("Orden Servicio 20113", "Estado_completada"));
-        listarOrdenServicios.add(new EDetalleServicio("Orden Servicio 20114", "Estado_completada"));
+        listarOrdenServicios =new ArrayList<EDetalleEstado>();
+        listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20102", "estado_pendiente"));
+        listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20105", "estado_progreso"));
+        listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20110", "Estado_completada"));
+        listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20111", "Estado_completada"));
+        listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20112", "Estado_completada"));
+        listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20113", "Estado_completada"));
+        listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20114", "Estado_completada"));
 
         AdaptadorServicios adaptador = new AdaptadorServicios(getActivity());
         ListView lv1 = (ListView) view.findViewById(R.id.idLvServicios);
@@ -45,7 +45,7 @@ public class EstadoFragmento extends Fragment {
         return view;
     }
 
-    class AdaptadorServicios extends ArrayAdapter<EDetalleServicio> {
+    class AdaptadorServicios extends ArrayAdapter<EDetalleEstado> {
 
 
         AdaptadorServicios(Activity context) {
@@ -75,7 +75,7 @@ public class EstadoFragmento extends Fragment {
                     if (position == 0){
                         cambiarFragmentoDetalleServicio();
                         DetalleEstadoFragmento fgDetalleFragmento = new DetalleEstadoFragmento();
-                        fgDetalleFragmento.setDetalleFragmento(eDetalleEstado);
+                       // fgDetalleFragmento.setDetalleFragmento(eDetalleEstado);
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction ft = fragmentManager.beginTransaction();
                         ft.replace(R.id.nav_host_fragment,fgDetalleFragmento);
