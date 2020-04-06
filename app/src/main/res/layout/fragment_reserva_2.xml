@@ -19,7 +19,7 @@
                 android:id="@+id/imageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="30dp"
                 android:layout_span="1"
                 android:src="@mipmap/mapa" />
 
@@ -41,7 +41,7 @@
                 android:id="@+id/imageButton4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="30dp"
                 android:layout_span="1"
                 android:src="@mipmap/pago" />
         </TableRow>
@@ -152,8 +152,8 @@
                 android:id="@+id/idLvAuto"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
                 android:layout_span="4" />
         </TableRow>
 
@@ -168,6 +168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_span="2"
                 android:background="@color/colorPrimary"
                 android:text="@string/btnAtras"
                 android:textColor="#FFFFFF" />
@@ -178,6 +179,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="10dp"
+                android:layout_span="2"
                 android:background="@color/colorPrimary"
                 android:text="@string/btnSiguiente"
                 android:textColor="#FFFFFF" />
