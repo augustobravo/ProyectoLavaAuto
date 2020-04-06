@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Lavado de Autos Rayo McQueen</string>
+    <string name="txtNombrePrincipal">Lavado de Autos Rayo McQueen</string>
+    <string name="btnIngresarPrincipal">Ingresar</string>
+    <string name="title_activity_menu_navegable">MenuNavegable</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Rayo McQueen</string>
+    <string name="nav_header_subtitle">Lavado de Autos</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_servicio">Servicios</string>
+    <string name="menu_reserva">Reserva</string>
+    <string name="menu_estado">Estado Servicio</string>
+    <string name="menu_cliente">Clientes</string>
+    <string name="menu_detalle_servicio">Detalle Servicio</string>
+
+    <string name="home_second">Home Second</string>
+    <string name="btnDetalleServicio">Detalle</string>
+    <string name="btnReservar">Realizar Reservar</string>
+    <string name="txtTituloUbicacion">¿Donde lo quieres?,Escoge un lugar.</string>
+    <string name="txtNombreServicio">Servicio:</string>
+    <string name="btnAgregarDireccion">+ Dirección</string>
+    <string name="btnSiguiente">Siguiente</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="servicio_prompt">Seleccione un Servicio</string>
+
+    <string-array name="servicios_array">
+        <item>Lavado de Salón</item>
+        <item>Lavado Premium</item>
+        <item>Renovación / Protección de Pintura</item>
+    </string-array>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_servicio">
+
+    <fragment
+        android:id="@+id/nav_servicio"
+        android:name="com.example.lavaauto.ui.servicio.ServicioFragmento"
+        android:label="@string/menu_servicio"
+        tools:layout="@layout/fragment_servicio">
+
+    </fragment>
+    <fragment
+        android:id="@+id/nav_reserva"
+        android:name="com.example.lavaauto.ui.reserva.ReservaFragmento"
+        android:label="@string/menu_reserva"
+        tools:layout="@layout/fragment_reserva" />
+
+    <fragment
+        android:id="@+id/nav_estado"
+        android:name="com.example.lavaauto.ui.estado.EstadoFragmento"
+        android:label="@string/menu_estado"
+        tools:layout="@layout/fragment_estado" />
+
+    <fragment
+        android:id="@+id/nav_cliente"
+        android:name="com.example.lavaauto.ui.cliente.ClienteFragmento"
+        android:label="@string/menu_cliente"
+        tools:layout="@layout/fragment_cliente" />
+
+    <fragment
+        android:id="@+id/nav_detalle_servicio"
+        android:name="com.example.lavaauto.ui.servicio.DetalleServicioFragment"
+        android:label="@string/menu_detalle_servicio"
+        tools:layout="@layout/fragment_detalle_servicio" />
+</navigation>

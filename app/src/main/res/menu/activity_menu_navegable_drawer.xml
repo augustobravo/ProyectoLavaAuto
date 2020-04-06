@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_servicio"
+            android:icon="@mipmap/servicio"
+            android:title="@string/menu_servicio" />
+        <item
+            android:id="@+id/nav_reserva"
+            android:icon="@mipmap/reserva"
+            android:title="@string/menu_reserva" />
+        <item
+            android:id="@+id/nav_estado"
+            android:icon="@mipmap/estado"
+            android:title="@string/menu_estado" />
+        <item
+            android:id="@+id/nav_cliente"
+            android:icon="@mipmap/cliente"
+            android:title="@string/menu_cliente" />
+    </group>
+</menu>
