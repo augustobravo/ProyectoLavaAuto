@@ -7,172 +7,179 @@
     tools:context=".ui.cliente.ClienteFragmento">
 
     <!-- TODO: Update blank fragment layout -->
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:backgroundTint="#2196F3"
+        android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="92dp"
-            android:text="Seleccionar servicio "
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditText"
-            android:layout_width="301dp"
-            android:layout_height="203dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="24dp"
-            android:autoText="false"
-            android:foreground="@android:color/transparent"
-            android:gravity="start"
-            android:singleLine="true"
-            android:text="Informacion del servicio"
-            android:textAlignment="textStart"
-            android:textColor="#3E454A"
-            android:textColorHighlight="@android:color/holo_red_light"
-            android:textColorLink="#AE1717"
-            android:textCursorDrawable="@android:color/holo_red_dark"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            app:layout_constraintVertical_bias="0.16" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="92dp"
+                android:layout_marginEnd="217dp"
+                android:layout_marginBottom="12dp"
+                android:text="Seleccionar servicio "
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/checkBox"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="45dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="34dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginBottom="23dp"
-            android:src="@mipmap/cliente"
-            app:layout_constraintBottom_toTopOf="@+id/textView3"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText"
+                android:layout_width="301dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="240dp"
+                android:autoText="false"
+                android:foreground="@android:color/transparent"
+                android:gravity="start"
+                android:singleLine="true"
+                android:text="Informacion del servicio"
+                android:textAlignment="textStart"
+                android:textColor="#3E454A"
+                android:textColorHighlight="@android:color/holo_red_light"
+                android:textColorLink="#AE1717"
+                android:textCursorDrawable="@android:color/holo_red_dark"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
-            android:layout_marginEnd="272dp"
-            android:layout_marginBottom="30dp"
-            android:text="Daniel_User"
-            app:layout_constraintBottom_toTopOf="@+id/textView3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="45dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="34dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="23dp"
+                android:src="@mipmap/cliente"
+                app:layout_constraintBottom_toTopOf="@+id/textView3"
+                app:layout_constraintEnd_toStartOf="@+id/textView4"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="62dp"
-            android:layout_marginEnd="284dp"
-            android:layout_marginBottom="150dp"
-            android:background="@android:color/holo_red_light"
-            android:text="Regresar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputEditText"
-            app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginEnd="272dp"
+                android:layout_marginBottom="30dp"
+                android:text="Daniel_User"
+                app:layout_constraintBottom_toTopOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            style="@android:style/Widget.Holo.Light.CompoundButton.CheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="288dp"
-            android:buttonTint="#AE1717"
-            android:checked="false"
-            android:clickable="true"
-            android:text="OS - 13 Feb 2020"
-            android:textColorLink="#AE1717"
-            android:textCursorDrawable="@android:color/holo_red_light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="62dp"
+                android:layout_marginEnd="284dp"
+                android:layout_marginBottom="150dp"
+                android:enabled="true"
+                android:text="Regresar"
+                android:textColor="#DC0F0F"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputEditText"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <CheckBox
-            android:id="@+id/checkBox3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="247dp"
-            android:buttonTint="#AE1717"
-            android:text="OS - 01 Feb 2020"
-            android:textColorLink="#AE1717"
-            app:layout_constraintBottom_toTopOf="@+id/checkBox4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            <CheckBox
+                android:id="@+id/checkBox"
+                style="@android:style/Widget.Holo.Light.CompoundButton.CheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="288dp"
+                android:layout_marginBottom="12dp"
+                android:buttonTint="#AE1717"
+                android:checked="false"
+                android:clickable="true"
+                android:text="OS - 13 Feb 2020"
+                android:textColorLink="#AE1717"
+                android:textCursorDrawable="@android:color/holo_red_light"
+                app:layout_constraintBottom_toTopOf="@+id/checkBox3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        <CheckBox
-            android:id="@+id/checkBox4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="4dp"
-            android:buttonTint="#AE1717"
-            android:text="OS - 10 Ene 2020"
-            android:textColorLink="#AE1717"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+            <CheckBox
+                android:id="@+id/checkBox3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="247dp"
+                android:buttonTint="#AE1717"
+                android:text="OS - 01 Feb 2020"
+                android:textColorLink="#AE1717"
+                app:layout_constraintBottom_toTopOf="@+id/checkBox4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="328dp"
-            android:layout_marginBottom="10dp"
-            android:text="Estado del Servicio"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/textInputEditText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox4"
-            app:layout_constraintVertical_bias="1.0" />
+            <CheckBox
+                android:id="@+id/checkBox4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="249dp"
+                android:layout_marginBottom="18dp"
+                android:buttonTint="#AE1717"
+                android:text="OS - 10 Ene 2020"
+                android:textColorLink="#AE1717"
+                app:layout_constraintBottom_toTopOf="@+id/textView6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="328dp"
+                android:layout_marginBottom="10dp"
+                android:text="Estado del Servicio"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textInputEditText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox4"
+                app:layout_constraintVertical_bias="0.0" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Prueba1">
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/filledTextField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Prueba2">
-
-    </com.google.android.material.textfield.TextInputLayout>
 </FrameLayout>
