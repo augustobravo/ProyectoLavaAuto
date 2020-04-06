@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.reserva.ReservaFragmento">
+    tools:context=".ui.reserva.Reserva2Fragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TableLayout
@@ -45,6 +44,7 @@
                 android:src="@mipmap/pago" />
         </TableRow>
 
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -56,7 +56,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:layout_span="4"
-                android:text="@string/txtTituloUbicacion"
+                android:text="@string/txtTituloVehiculo"
                 android:textAlignment="center"
                 android:textStyle="bold" />
         </TableRow>
@@ -65,24 +65,68 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp">
+            android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:text="@string/txtNombreCliente" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp">
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="@string/txtNombreServicio" />
+                android:text="@string/txtNombreTipoDocumento" />
 
             <Spinner
                 android:id="@+id/idSpServicio"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_span="3"
-                android:entries="@array/servicios_array"
+                android:layout_marginLeft="10dp"
+                android:layout_span="2"
+                android:entries="@array/tipodocumento_array"
                 android:prompt="@string/servicio_prompt" />
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:text="@string/txtNombreDocumento" />
+
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+        </TableRow>
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -125,5 +169,4 @@
         </TableRow>
 
     </TableLayout>
-
 </FrameLayout>
