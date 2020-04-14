@@ -17,8 +17,8 @@ public class DetalleEstadoFragmento extends Fragment{
         // Inflate the layout for this fragmen
         return inflater.inflate(R.layout.fragment_detalle_estado, container, false);
     }
-    public void Volver(View v){
-       //   startActivity(new Intent(this, EstadoFragmento.class));
-
+    public void Regresar(View v){
+       //startActivity(new Intent(this, EstadoFragmento.class));
+        //i = new Intent(this, MainActivity.class)
     }
 }

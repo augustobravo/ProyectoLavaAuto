@@ -42,7 +42,6 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:enabled="true"
-            android:onClick="Volver"
             android:text="Regresar"
             android:textColor="#DC0F0F" />
 

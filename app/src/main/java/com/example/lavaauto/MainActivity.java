@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.lavaauto.ui.home.RegistroUsuario;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -17,5 +19,9 @@ public class MainActivity extends AppCompatActivity {
     public void eventoBotonIngresar(View view){
         Intent menuNavegable= new Intent(this, MenuNavegable.class);
         startActivity(menuNavegable);
+    }
+    public void registrarUsuario (View view) {
+        Intent registrarUsuario = new Intent(this, RegistroUsuario.class);
+        startActivity(registrarUsuario);
     }
 }

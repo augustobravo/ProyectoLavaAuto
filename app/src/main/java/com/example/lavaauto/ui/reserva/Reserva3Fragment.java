@@ -20,7 +20,7 @@ public class Reserva3Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_reserva3, container, false);
+      View view = inflater.inflate(R.layout.fragment_reserva3, container, false);
 
         Button btnAnterior = (Button) view.findViewById(R.id.idBtnAtras1);
         btnAnterior.setOnClickListener(new View.OnClickListener() {
@@ -29,6 +29,7 @@ public class Reserva3Fragment extends Fragment {
                 eventoBotonAtras();
             }
         });
+
 
         Button btnSiguiente = (Button) view.findViewById(R.id.idBtnSiguiente2);
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
