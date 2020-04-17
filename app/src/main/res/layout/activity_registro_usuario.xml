@@ -6,128 +6,122 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.RegistroUsuario">
 
+
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre y Apellido"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="70dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="196dp"
+        android:text="Nombres Completos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editText5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
         android:ems="10"
+        android:hint="Ingresar Informacion"
         android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="57dp" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Telefono"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="135dp" />
-
-    <EditText
-        android:id="@+id/editText6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="123dp" />
-
-    <EditText
-        android:id="@+id/editText7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="190dp" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="E-mail"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="200dp" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Contraseña"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="272dp" />
-
-    <EditText
-        android:id="@+id/editText8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="263dp" />
+        app:layout_constraintBottom_toTopOf="@+id/editText7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="113dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="242dp"
         android:text="Registrar"
-        tools:layout_editor_absoluteX="236dp"
-        tools:layout_editor_absoluteY="456dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText6"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="cancelarUsuario"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="208dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginBottom="224dp"
         android:text="Cancelar"
-        tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="456dp" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Placa"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="341dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText6"
+        app:layout_constraintVertical_bias="0.664" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/editText6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
+        android:hint="Ingresar informacion"
         android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="181dp"
-        tools:layout_editor_absoluteY="328dp" />
-
-    <EditText
-        android:id="@+id/editText10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="181dp"
-        tools:layout_editor_absoluteY="387dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Marca"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="394dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="76dp"
+        android:text="Email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginBottom="76dp"
+        android:text="Contraseña"
+        app:layout_constraintBottom_toTopOf="@+id/textView11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="124dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -67,11 +67,11 @@ public class ReservaFragmento extends Fragment {
         }
     }
 
-    private void eventoBotonSiguiente(){
-        Reserva2Fragment fgReserva2 = new Reserva2Fragment();
+   private void eventoBotonSiguiente(){
+  /*      Reserva2Fragment fgReserva2 = new Reserva2Fragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.nav_host_fragment, fgReserva2);
-        ft.commit();
+        ft.commit();*/
     }
 }

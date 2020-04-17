@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.lavaauto.MainActivity;
 import com.example.lavaauto.R;
 
 public class RegistroUsuario extends AppCompatActivity {
@@ -16,7 +17,7 @@ public class RegistroUsuario extends AppCompatActivity {
         setContentView(R.layout.activity_registro_usuario);
     }
     public void cancelarUsuario (View view) {
-        Intent cancelarUsuario = new Intent(this, RegistroUsuario.class);
+        Intent cancelarUsuario = new Intent(this, MainActivity.class);
         startActivity(cancelarUsuario);
     }
 }
