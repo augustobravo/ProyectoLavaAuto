@@ -13,34 +13,54 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+
 import com.example.lavaauto.MainActivity;
 import com.example.lavaauto.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 public class RegistroUsuario extends AppCompatActivity {
 
-
-    EditText txtnacimiento;
-    EditText txtfecharegistro;
-    Calendar calendario1 = Calendar.getInstance();
-    Calendar calendario2 = Calendar.getInstance();
+    private EditText txtNombres;
+    private EditText txtdocumento;
+    private EditText txtpassword;
+    private EditText txtNacimiento;
+    private EditText txtfecharegistro;
+    private Calendar calendario1 = Calendar.getInstance();
+    private Calendar calendario2 = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_usuario);
 
-        txtnacimiento = findViewById(R.id.txtnacimiento);
-        txtnacimiento.setOnClickListener(new View.OnClickListener() {
+        txtNombres = (EditText)findViewById(R.id.txtnombres);
+        txtpassword = (EditText)findViewById(R.id.txtpassword);
+        txtNacimiento = (EditText)findViewById(R.id.txtnacimiento);
+        txtdocumento = (EditText)findViewById(R.id.txtdocumento);
+        txtfecharegistro = (EditText)findViewById(R.id.txtfecharegistro);
+
+
+        txtNacimiento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new DatePickerDialog(RegistroUsuario.this, date, calendario1
@@ -81,16 +101,16 @@ public class RegistroUsuario extends AppCompatActivity {
 
     };
     private void actualizarInput() {
-        String formatoDeFecha = "MM/dd/yy"; //In which you need put here
+        String formatoDeFecha = "MM/dd/yyyy"; //In which you need put here
         SimpleDateFormat sdf1;
 
         sdf1 = new SimpleDateFormat(formatoDeFecha, Locale.US);
-        txtnacimiento.setText(sdf1.format(calendario1.getTime()));
+        txtNacimiento.setText(sdf1.format(calendario1.getTime()));
 
     }
 
     private void actualizarInput1(){
-        String formatoDeFecha = "MM/dd/yy"; //In which you need put here
+        String formatoDeFecha = "MM/dd/yyyy"; //In which you need put here
         SimpleDateFormat sdf2;
         sdf2 = new SimpleDateFormat(formatoDeFecha, Locale.US);
         txtfecharegistro.setText(sdf2.format(calendario2.getTime()));
@@ -100,19 +120,58 @@ public class RegistroUsuario extends AppCompatActivity {
 
 
     public void registrar(View v) {
-        final EditText txtNombres = findViewById(R.id.txtnombres);
-        final EditText txtpassword = findViewById(R.id.txtpassword);
-        final EditText txtNacimiento = findViewById(R.id.txtnacimiento);
-        final EditText txtdocumento = findViewById(R.id.txtdocumento);
-        final EditText txtfecharegistro = findViewById(R.id.txtfecharegistro);
 
         String url = "http://lavaauto.azurewebsites.net/LavaAuto.svc/Usuarios";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("Nombres", txtNombres.getText().toString());
+            jsonObject.put("Password", txtpassword.getText().toString());
+            jsonObject.put("FechaNacimiento", txtNacimiento.getText().toString());
+            jsonObject.put("Documento", txtdocumento.getText().toString());
+            jsonObject.put("FechaRegistro", txtfecharegistro.getText().toString());
+            jsonObject.put("UsuariosID", 0);
+            //jsonObject.put("autos", new String[]{});
+            //jsonObject.put("direcciones", new String[]{});
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String codigo = response.optString("Codigo");
+                String descripcion = response.optString("Descripcion");
+                Log.i("codigo respuesta====>", codigo.toString());
+                Log.i("respuesta====>", descripcion.toString());
+                Toast toast = Toast.makeText(RegistroUsuario.this , descripcion, Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        Log.i("e1====>", e1.toString());
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        Log.i("e2====>", e2.toString());
+                    }
+                }
+            }
+        });
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
+        /*StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast toast = Toast.makeText(RegistroUsuario.this, "Se insertó correctamente Usuario", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(RegistroUsuario.this , "Se insertó correctamente Usuario", Toast.LENGTH_LONG);
                         toast.setGravity(Gravity.CENTER, 0, 0);
                         toast.show();
                     }
@@ -120,11 +179,27 @@ public class RegistroUsuario extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.i("======>", error.toString());
+                        // As of f605da3 the following should work
+                        NetworkResponse response = error.networkResponse;
+                        if (error instanceof ServerError && response != null) {
+                            try {
+                                String res = new String(response.data,
+                                        HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                                // Now you can use any deserializer to make sense of data
+                                JSONObject obj = new JSONObject(res);
+                            } catch (UnsupportedEncodingException e1) {
+                                // Couldn't properly decode data to string
+                                Log.i("e1====>", e1.toString());
+                             } catch (JSONException e2) {
+                                // returned data is not JSONObject?
+                                Log.i("e2====>", e2.toString());
+                            }
+                        }
+
                     }
                 }
         ) {
-            @Override
+           @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
                 params.put("Nombres", txtNombres.getText().toString());
@@ -137,10 +212,21 @@ public class RegistroUsuario extends AppCompatActivity {
                 params.put("direcciones","[]");
                 return params;
             }
-        };
+        };*/
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+
+           byte[] bytes = jsonObjectRequest.getBody();
+            if(bytes != null){
+                try {
+                    String str = new String(bytes, "UTF-8");
+                    Log.i("Body ======>", str);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        requestQueue.add(jsonObjectRequest);
     }
 
 

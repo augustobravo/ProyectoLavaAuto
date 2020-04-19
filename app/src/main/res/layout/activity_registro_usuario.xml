@@ -53,6 +53,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginEnd="81dp"
         android:layout_marginBottom="156dp"
+        android:onClick="registrar"
         android:text="Cancelar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button4"
