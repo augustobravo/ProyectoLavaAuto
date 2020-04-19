@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,32 +17,91 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import com.example.lavaauto.R;
-import com.example.lavaauto.ui.entidad.EDetalleServicio;
 import com.example.lavaauto.ui.entidad.EServicio;
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class ServicioFragmento extends Fragment {
     private ArrayList<EServicio> listarServicios;
+    private ListView lv1;
+    private Gson gson;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_servicio, container, false);
-
-        listarServicios =new ArrayList<EServicio>();
-        listarServicios.add(new EServicio("Lavado de Salón", "Lavadodesalon"));
-        listarServicios.add(new EServicio("Lavado Premium", "lavadopremium"));
-        listarServicios.add(new EServicio("Renovación / Protección de Pintura", "renovaciondepintura"));
-
-        AdaptadorServicios adaptador = new AdaptadorServicios(getActivity());
-        ListView lv1 = (ListView) view.findViewById(R.id.idLvServicios);
-        lv1.setAdapter(adaptador);
+        lv1 = (ListView) view.findViewById(R.id.idLvServicios);
+        cargarLista(view);
         return view;
     }
 
+    public void cargarLista(View view){
+
+        String url = "http://lavaauto.azurewebsites.net/LavaAuto.svc/Servicios";
+
+        StringRequest stringRequest= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    Log.i("======>", jsonArray.toString());
+
+                    listarServicios =new ArrayList<EServicio>();
+                    for (int i=0; i<jsonArray.length(); i++){
+                        JSONObject object = jsonArray.getJSONObject(i);
+                        Log.i("======>", object.toString());
+                        EServicio eServicio = new EServicio();
+                        eServicio.setServicioID(object.getInt("ServicioID"));
+                        eServicio.setNombreServicio(object.getString("Descripcion"));
+                        eServicio.setPrecio(object.getDouble("Precio"));
+                        eServicio.setImagenID(object.getInt("ImagenID"));
+
+                        JSONArray jsonArrayDetalle = object.getJSONArray("Detalles");
+                        String detalle = "";
+                        for (int j = 0; j <jsonArrayDetalle.length() ; j++) {
+                            JSONObject objectDetalle = jsonArrayDetalle.getJSONObject(j);
+                            Log.i("======>", objectDetalle.toString());
+                            detalle = detalle + "• "+ objectDetalle.getString("Detalle") +"\n";
+                        }
+                        eServicio.setDetalle(detalle);
+                       listarServicios.add(eServicio);
+                    }
+
+                    AdaptadorServicios adaptador = new AdaptadorServicios(getActivity());
+                    lv1.setAdapter(adaptador);
+
+                } catch (JSONException e) {
+                    Log.i("======>", e.getMessage());
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("======>", error.toString());
+                    }
+                }
+        );
+
+        RequestQueue requestQueue= Volley.newRequestQueue(getActivity());
+        requestQueue.add(stringRequest);
+
+    }
     class AdaptadorServicios extends ArrayAdapter<EServicio> {
 
 
@@ -56,78 +116,26 @@ public class ServicioFragmento extends Fragment {
             Button btnDetalle = (Button) item.findViewById(R.id.idBtnDetalleServicio);
             ImageView imageView1 = (ImageView)item.findViewById(R.id.idIvServicio);
 
-            textView1.setText(listarServicios.get(position).getNombre());
-
-            if (listarServicios.get(position).getImagen() =="Lavadodesalon")
-                imageView1.setImageResource(R.mipmap.lavadodesalon);
-            else  if (listarServicios.get(position).getImagen() =="lavadopremium")
-                imageView1.setImageResource(R.mipmap.lavadopremium);
-            else
-                imageView1.setImageResource(R.mipmap.renovaciondepintura);
+            textView1.setText(listarServicios.get(position).getNombreServicio());
+            imageView1.setImageResource(listarServicios.get(position).getImagenID());
 
             btnDetalle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    EDetalleServicio eDetalleServicio = null;
-                    if (position == 0){
-                        int idImagen = R.mipmap.lavadodesalon;
-                        String sDetalle = "• LAVADO EXTERIOR DE CARROCERÍA CON SHAMPOO\n" +
-                                "• SECADO CON ANTE SONAX\n" +
-                                "• LAVADO DE LLANTAS Y GUARDARNOS\n" +
-                                "• AIRE COMPRIMIDO PARA EXTERIORES E INTERIORES\n" +
-                                "• SILICONA A GUARDAFANGO Y PARTES PLÁSTICAS\n" +
-                                "• ASPIRADO INTEGRAL DE SALÓN\n" +
-                                "• LAVADO DE ALFOMBRA, MALETERA Y CINTURONES\n" +
-                                "• LAVADO DE PUERTAS Y TECHO";
-                        eDetalleServicio = new EDetalleServicio(listarServicios.get(position).getNombre(), idImagen, sDetalle);
-                    } else if (position == 1){
-                        int idImagen = R.mipmap.lavadopremium;
-                        String sDetalle = "• LAVADO EXTERIOR DE CARROCERÍA CON SHAMPOO\n" +
-                                "• SECADO CON ANTE SONAX\n" +
-                                "• LAVADO DE LLANTAS Y GUARDARNOS\n" +
-                                "• AIRE COMPRIMIDO PARA EXTERIORES E INTERIORES\n" +
-                                "• SILICONA A GUARDAFANGO Y PARTES PLÁSTICAS\n" +
-                                "• ASPIRADO INTEGRAL DE SALÓN\n" +
-                                "• LAVADO DE ALFOMBRA, MALETERA Y CINTURONES\n" +
-                                "• LAVADO DE PUERTAS Y TECHO\n" +
-                                "• LAVADO DE ASIENTOS CON DESMONTAJE\n" +
-                                "• LIMPIEZA INTENSIVA DE TODAS LOS PLÁSTICOS\n" +
-                                "  (CONSOLA, PANELES DE PUERTAS, TIMÓN, ETC.)\n" +
-                                "• LIMPIEZA DE PLÁSTICOS INTERIORES Y LUNAS\n" +
-                                "• LIMPIEZA Y SILICONEADO DE TABLERO\n" +
-                                "• SILICONEDO DE PLÁSTICOS Y VINÍLICOS";
-                        eDetalleServicio = new EDetalleServicio(listarServicios.get(position).getNombre(), idImagen,sDetalle);
-                    }else {
-                        int idImagen = R.mipmap.renovaciondepintura;
-                        String sDetalle = "• LAVADO EXTERIOR DE CARROCERÍA CON SHAMPOO\n" +
-                                "• SECADO CON ANTE SONAX\n" +
-                                "• LAVADO DE LLANTAS Y GUARDARNOS\n" +
-                                "• AIRE COMPRIMIDO PARA EXTERIORES E INTERIORES\n" +
-                                "• SILICONA A GUARDAFANGO Y PARTES PLÁSTICAS\n" +
-                                "• ASPIRADO INTEGRAL DE SALÓN\n" +
-                                "• LAVADO DE ALFOMBRA, MALETERA Y CINTURONES\n" +
-                                "• LAVADO DE PUERTAS Y TECHO";
-                        eDetalleServicio = new EDetalleServicio(listarServicios.get(position).getNombre(), idImagen,sDetalle);
-
-                    }
-                    cambiarFragmentoDetalleServicio(eDetalleServicio);
-
+                    cambiarFragmentoDetalleServicio(listarServicios.get(position));
                 }
             });
             return(item);
         }
 
-        private void cambiarFragmentoDetalleServicio(EDetalleServicio eDetalleServicio){
+        private void cambiarFragmentoDetalleServicio(EServicio eServicio){
             DetalleServicioFragment fgDetalleServicio = new DetalleServicioFragment();
-            fgDetalleServicio.setDetalleServicio(eDetalleServicio);
+            fgDetalleServicio.setDetalleServicio(eServicio);
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction ft = fragmentManager.beginTransaction();
             ft.replace(R.id.nav_host_fragment, fgDetalleServicio);
             ft.addToBackStack(null);
             ft.commit();
-
-
-
         }
     }
 }

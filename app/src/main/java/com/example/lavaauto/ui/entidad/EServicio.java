@@ -1,19 +1,50 @@
 package com.example.lavaauto.ui.entidad;
 
+import java.util.List;
+
 public class EServicio {
-    private String  nombre;
-    private String imagen;
+    private int ServicioID;
+    private String  NombreServicio;
+    private double Precio;
+    private int ImagenID;
+    private String Detalle;
 
-    public EServicio(String nombre, String imagen) {
-        this.nombre = nombre;
-        this.imagen = imagen;
+    public void setServicioID(int ServicioID) {
+       this.ServicioID = ServicioID;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setNombreServicio(String NombreServicio) {
+        this.NombreServicio = NombreServicio;
     }
 
-    public String getImagen() {
-        return imagen;
+    public void setPrecio(double Precio){
+        this.Precio = Precio;
+    }
+
+    public void setImagenID(int ImagenID) {
+        this.ImagenID = ImagenID;
+    }
+
+    public void setDetalle(String Detalle) {
+        this.Detalle = Detalle;
+    }
+
+   public int getServicioID() {
+        return ServicioID;
+    }
+    public String getNombreServicio() {
+        return NombreServicio;
+    }
+
+    public double getPrecio() {
+        return Precio;
+    }
+
+    public int getImagenID() {
+        return ImagenID;
+    }
+
+    public String getDetalle() {
+        return Detalle;
     }
 }
