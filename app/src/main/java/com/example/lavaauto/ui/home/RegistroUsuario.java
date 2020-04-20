@@ -27,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 
 
 import com.example.lavaauto.MainActivity;
+import com.example.lavaauto.MenuNavegable;
 import com.example.lavaauto.R;
 
 import org.json.JSONException;
@@ -66,19 +67,14 @@ public class RegistroUsuario extends AppCompatActivity {
                 new DatePickerDialog(RegistroUsuario.this, date, calendario1
                         .get(Calendar.YEAR), calendario1.get(Calendar.MONTH),
                         calendario1.get(Calendar.DAY_OF_MONTH)).show();
-
-
             }
         });
-        txtfecharegistro = findViewById(R.id.txtfecharegistro);
         txtfecharegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new DatePickerDialog(RegistroUsuario.this, date, calendario2
                         .get(Calendar.YEAR), calendario2.get(Calendar.MONTH),
                         calendario2.get(Calendar.DAY_OF_MONTH)).show();
-
-
             }
         });
 
@@ -117,8 +113,6 @@ public class RegistroUsuario extends AppCompatActivity {
 
     }
 
-
-
     public void registrar(View v) {
 
         String url = "http://lavaauto.azurewebsites.net/LavaAuto.svc/Usuarios";
@@ -132,6 +126,8 @@ public class RegistroUsuario extends AppCompatActivity {
             jsonObject.put("UsuariosID", 0);
             //jsonObject.put("autos", new String[]{});
             //jsonObject.put("direcciones", new String[]{});
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -145,6 +141,7 @@ public class RegistroUsuario extends AppCompatActivity {
                 Toast toast = Toast.makeText(RegistroUsuario.this , descripcion, Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -166,6 +163,11 @@ public class RegistroUsuario extends AppCompatActivity {
                 }
             }
         });
+        Toast toast = Toast.makeText(RegistroUsuario.this , "Se insertó Usuario ", Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.END, 0, 0);
+        toast.show();
+       Intent ingresarmenu = new Intent(this, MenuNavegable.class);
+       startActivity(ingresarmenu);
 
         /*StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<JSONObject>() {

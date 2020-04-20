@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbarAlwaysDrawHorizontalTrack="false"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
     tools:context=".ui.home.RegistroUsuario">
 
 
@@ -21,7 +23,6 @@
         android:id="@+id/txtnombres"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
         android:layout_marginTop="55dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="10dp"
@@ -30,8 +31,6 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/txtpassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <Button
@@ -53,7 +52,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginEnd="81dp"
         android:layout_marginBottom="156dp"
-        android:onClick="registrar"
+        android:onClick="cancelarUsuario"
         android:text="Cancelar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button4"
@@ -66,9 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="50dp"
         android:text="Fecha Nacimiento"
-        app:layout_constraintEnd_toStartOf="@+id/txtnacimiento"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -76,7 +73,6 @@
         android:id="@+id/txtpassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="15dp"
@@ -84,8 +80,6 @@
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/txtnacimiento"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/txtnombres" />
 
     <TextView
@@ -143,6 +137,7 @@
         android:id="@+id/txtnacimiento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="17dp"
         android:ems="10"
@@ -150,7 +145,8 @@
         android:hint="ingresar fecha"
         android:inputType="date"
         app:layout_constraintBottom_toTopOf="@+id/txtdocumento"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtpassword" />
 
     <TextView
         android:id="@+id/textView14"

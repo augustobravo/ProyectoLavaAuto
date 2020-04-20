@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "754455335744",
+    "firebase_url": "https://lavaauto-e1202.firebaseio.com",
+    "project_id": "lavaauto-e1202",
+    "storage_bucket": "lavaauto-e1202.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754455335744:android:3e9631d8eeac97b29660a5",
+        "android_client_info": {
+          "package_name": "com.example.lavaauto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754455335744-ncnpdo1l63trrj9dqfc7iscfana29a7a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lavaauto",
+            "certificate_hash": "bbf65635290d19aaf5249feef6ad3581d9a3ac87"
+          }
+        },
+        {
+          "client_id": "754455335744-5viu7mu6pkjuftf0a638ugrvrkinvmih.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFQYi-G932rMMnNoempArfSKS1XgHmbRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754455335744-5viu7mu6pkjuftf0a638ugrvrkinvmih.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
