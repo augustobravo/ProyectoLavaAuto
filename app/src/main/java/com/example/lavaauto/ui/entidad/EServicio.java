@@ -29,9 +29,10 @@ public class EServicio {
         this.Detalle = Detalle;
     }
 
-   public int getServicioID() {
+    public int getServicioID() {
         return ServicioID;
     }
+
     public String getNombreServicio() {
         return NombreServicio;
     }
@@ -46,5 +47,10 @@ public class EServicio {
 
     public String getDetalle() {
         return Detalle;
+    }
+
+    @Override
+    public String toString() {
+        return NombreServicio;
     }
 }

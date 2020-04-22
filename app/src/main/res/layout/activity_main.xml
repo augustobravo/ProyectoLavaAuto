@@ -64,7 +64,7 @@
         app:barrierDirection="top" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/txtUsuario"
         android:layout_width="160dp"
         android:layout_height="41dp"
         android:layout_marginStart="10dp"
@@ -74,14 +74,14 @@
         android:ems="10"
         android:hint="Dni"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText4"
+        app:layout_constraintBottom_toTopOf="@+id/txtPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idIwPrincipal" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/txtPassword"
         android:layout_width="160dp"
         android:layout_height="39dp"
         android:layout_marginStart="10dp"
@@ -96,7 +96,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUsuario" />
 
     <TextView
         android:id="@+id/textView9"

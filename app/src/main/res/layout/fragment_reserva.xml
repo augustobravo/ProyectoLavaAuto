@@ -58,6 +58,7 @@
                 android:layout_span="4"
                 android:text="@string/txtTituloUbicacion"
                 android:textAlignment="center"
+                android:textSize="14sp"
                 android:textStyle="bold" />
         </TableRow>
 
@@ -72,7 +73,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="@string/txtNombreServicio" />
+                android:text="@string/txtNombreServicio"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/idSpServicio"
