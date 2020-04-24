@@ -3,6 +3,9 @@
     package="com.example.lavaauto">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -12,18 +15,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LogeoActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCm9FAHpsNboPOtdC4v8KLbyH8r_2OfVUM" />
+
+        <activity android:name=".LogeoActivity" />
         <activity android:name=".ui.home.RegistroUsuario" />
         <activity
             android:name=".MenuNavegable"
             android:label="@string/title_activity_menu_navegable"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MenuPrincipal" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>

@@ -26,6 +26,7 @@ import com.android.volley.toolbox.Volley;
 
 import com.example.lavaauto.R;
 import com.example.lavaauto.ui.entidad.EServicio;
+import com.example.lavaauto.ui.utilitario.Constants;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -118,19 +119,18 @@ public class ServicioFragmento extends Fragment {
 
             textView1.setText(listarServicios.get(position).getNombreServicio());
             imageView1.setImageResource(listarServicios.get(position).getImagenID());
-
+            Constants.servicio = listarServicios.get(position);
             btnDetalle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    cambiarFragmentoDetalleServicio(listarServicios.get(position));
+                    cambiarFragmentoDetalleServicio();
                 }
             });
             return(item);
         }
 
-        private void cambiarFragmentoDetalleServicio(EServicio eServicio){
+        private void cambiarFragmentoDetalleServicio(){
             DetalleServicioFragment fgDetalleServicio = new DetalleServicioFragment();
-            fgDetalleServicio.setDetalleServicio(eServicio);
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction ft = fragmentManager.beginTransaction();
             ft.replace(R.id.nav_host_fragment, fgDetalleServicio);

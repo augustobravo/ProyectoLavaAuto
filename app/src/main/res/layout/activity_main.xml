@@ -18,7 +18,6 @@
         android:layout_marginTop="54dp"
         android:layout_marginEnd="63dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText3"
         app:layout_constraintTop_toBottomOf="@+id/idIwPrincipal" />
 
     <ImageView
@@ -36,10 +35,9 @@
         android:id="@+id/idBtnIngresarPrincipal"
         android:layout_width="102dp"
         android:layout_height="60dp"
-        android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="269dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="28dp"
         android:backgroundTint="#DF1304"
         android:onClick="eventoBotonIngresar"
         android:text="@string/btnIngresarPrincipal"
@@ -47,7 +45,6 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText4" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -102,17 +99,14 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="109dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="49dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginBottom="60dp"
+        android:gravity="center"
         android:onClick="registrarUsuario"
         android:text="REGISTRATE AQUI"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idBtnIngresarPrincipal" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

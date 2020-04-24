@@ -18,10 +18,10 @@ import com.example.lavaauto.MenuNavegable;
 import com.example.lavaauto.R;
 import com.example.lavaauto.ui.entidad.EServicio;
 import com.example.lavaauto.ui.reserva.ReservaFragmento;
+import com.example.lavaauto.ui.utilitario.Constants;
 
 public class DetalleServicioFragment extends Fragment {
 
-    EServicio eServicio;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class DetalleServicioFragment extends Fragment {
         TextView txtPrecioServicio = (TextView)view.findViewById(R.id.idTxtPrecio);
         Button btnReserva = (Button) view.findViewById(R.id.idBtnIrReserva);
 
-
+        EServicio eServicio = Constants.servicio;
         txtNombreServicioDetalle.setText(eServicio.getNombreServicio());
         ImvServicioDetalle.setImageResource(eServicio.getImagenID());
         txtDetalleServicio.setText(eServicio.getDetalle());
@@ -49,13 +49,9 @@ public class DetalleServicioFragment extends Fragment {
         return view;
     }
 
-    public void setDetalleServicio(EServicio eServicio){
-        this.eServicio = eServicio;
-    }
 
     private void irAReserva(){
         ReservaFragmento fgReserva = new ReservaFragmento();
-        fgReserva.setServicio(eServicio);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.nav_host_fragment, fgReserva);

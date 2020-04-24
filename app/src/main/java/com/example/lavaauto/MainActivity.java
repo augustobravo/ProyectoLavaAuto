@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.lavaauto.dao.LavaAutoDAO;
 import com.example.lavaauto.ui.entidad.EUsuario;
 import com.example.lavaauto.ui.home.RegistroUsuario;
+import com.example.lavaauto.ui.utilitario.Constants;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -60,14 +61,18 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         LavaAutoDAO lavaAutoDAO = new LavaAutoDAO();
         EditText txtdocumento = (EditText)findViewById(R.id.txtUsuario);
         EditText txtpassword = (EditText) findViewById(R.id.txtPassword);
-
+        txtdocumento.setText("12345678");
+        txtpassword.setText("123456");
         EUsuario usuario = lavaAutoDAO.obtenerUsuario(txtdocumento.getText().toString(), txtpassword.getText().toString());
         if(usuario != null) {
-            Intent menuNavegable = new Intent(this, MenuNavegable.class);
-            startActivity(menuNavegable);
+            Constants.usuario = usuario;
+            //Intent menuNavegable = new Intent(this, MenuNavegable.class);
+            //startActivity(menuNavegable);
         }else{
             Toast.makeText(this, "Usuario Incorrecto",Toast.LENGTH_SHORT).show();
         }
+        Intent menuNavegable = new Intent(this, MenuNavegable.class);
+        startActivity(menuNavegable);
     }
     public void registrarUsuario (View view) {
         Intent registrarUsuario = new Intent(this, RegistroUsuario.class);
