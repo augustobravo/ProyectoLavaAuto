@@ -20,5 +20,12 @@
             android:id="@+id/nav_cliente"
             android:icon="@mipmap/cliente"
             android:title="@string/menu_cliente" />
+        <item
+            android:id="@+id/nav_consulta"
+            android:icon="@mipmap/estado"
+            android:title="Consultas"/>
+
     </group>
+
+
 </menu>

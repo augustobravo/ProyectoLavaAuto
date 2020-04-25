@@ -113,11 +113,31 @@ public class RegistroUsuario extends AppCompatActivity {
 
     }
 
-    public void registrar(View v) {
 
+
+    public void registrar(View v) {
+        Log.i("RegistroUsuario", "registrar()");
         String url = "http://lavaauto.azurewebsites.net/LavaAuto.svc/Usuarios";
         JSONObject jsonObject = new JSONObject();
+
         try {
+            String resultado = "";
+            if (txtNombres.length() == 0){
+                resultado = "Falta Nombre ";
+            }
+            if (txtpassword.length() == 0){
+                resultado = resultado + "Falta Clave ";
+            }
+            if (txtNacimiento.length() == 0){
+                resultado = resultado + "Falta fecha Nac ";
+            }
+            if (txtdocumento.length() == 0){
+                resultado = resultado + "Falta Documento ";
+            }
+            if (txtfecharegistro.length() == 0){
+                resultado = resultado + "Falta fecha Reg ";
+            }
+            Toast.makeText(this,resultado,Toast.LENGTH_LONG).show();
             jsonObject.put("Nombres", txtNombres.getText().toString());
             jsonObject.put("Password", txtpassword.getText().toString());
             jsonObject.put("FechaNacimiento", txtNacimiento.getText().toString());
@@ -126,6 +146,7 @@ public class RegistroUsuario extends AppCompatActivity {
             jsonObject.put("UsuariosID", 0);
             //jsonObject.put("autos", new String[]{});
             //jsonObject.put("direcciones", new String[]{});
+
 
 
         } catch (JSONException e) {
@@ -138,9 +159,7 @@ public class RegistroUsuario extends AppCompatActivity {
                 String descripcion = response.optString("Descripcion");
                 Log.i("codigo respuesta====>", codigo.toString());
                 Log.i("respuesta====>", descripcion.toString());
-                Toast toast = Toast.makeText(RegistroUsuario.this , descripcion, Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
+
 
             }
         }, new Response.ErrorListener() {
@@ -163,11 +182,7 @@ public class RegistroUsuario extends AppCompatActivity {
                 }
             }
         });
-        Toast toast = Toast.makeText(RegistroUsuario.this , "Se insertó Usuario ", Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.END, 0, 0);
-        toast.show();
-       Intent ingresarmenu = new Intent(this, MenuNavegable.class);
-       startActivity(ingresarmenu);
+
 
         /*StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<JSONObject>() {
@@ -223,6 +238,11 @@ public class RegistroUsuario extends AppCompatActivity {
                 try {
                     String str = new String(bytes, "UTF-8");
                     Log.i("Body ======>", str);
+                    Toast toast = Toast.makeText(RegistroUsuario.this , "Se insertó Usuario ", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.END, 0, 0);
+                    toast.show();
+                    Intent ingresarmenu = new Intent(this, MenuNavegable.class);
+                    startActivity(ingresarmenu);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }

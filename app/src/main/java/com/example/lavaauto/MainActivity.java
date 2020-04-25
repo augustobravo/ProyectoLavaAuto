@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 .build();
         signInButton = (SignInButton) findViewById(R.id.singButton);
         signInButton.setSize(SignInButton.SIZE_WIDE);
-        signInButton.setColorScheme(SignInButton.COLOR_LIGHT);
+        signInButton.setColorScheme(SignInButton.COLOR_DARK);
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,12 +60,21 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
 
     public void eventoBotonIngresar(View view){
+        Log.i("MainActivity", "eventoBotonIngresar()");
         LavaAutoDAO lavaAutoDAO = new LavaAutoDAO();
-        EditText txtdocumento = (EditText)findViewById(R.id.txtUsuario);
+        EditText txtdocumento = (EditText)findViewById(R.id.txtDocumento);
         EditText txtpassword = (EditText) findViewById(R.id.txtPassword);
         txtdocumento.setText("12345678");
         txtpassword.setText("123456");
         EUsuario usuario = lavaAutoDAO.obtenerUsuario(txtdocumento.getText().toString(), txtpassword.getText().toString());
+        String resultado = "";
+        if (txtdocumento.length() == 0){
+            resultado = "Falta Documento ";
+        }
+        if (txtpassword.length() == 0){
+            resultado = resultado + "Falta Contraseña ";
+        }
+        Toast.makeText(this,resultado,Toast.LENGTH_SHORT).show();
         if(usuario != null) {
             Constants.usuario = usuario;
             //Intent menuNavegable = new Intent(this, MenuNavegable.class);
@@ -95,6 +106,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private void handleSignInResult(GoogleSignInResult result){
         if (result.isSuccess()){
             goMainScreen();
+            Toast toast3 = Toast.makeText(this, "Conectado",Toast.LENGTH_SHORT);
+            toast3.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 1700);
+            toast3.show();
         } else {
             Toast.makeText(this, "No se pudo iniciar",Toast.LENGTH_SHORT).show();
         }

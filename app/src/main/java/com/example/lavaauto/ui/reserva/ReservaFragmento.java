@@ -65,7 +65,7 @@ public class ReservaFragmento extends Fragment {
         listarDomicilio = new LavaAutoDAO().obtenerDirecciones(Constants.usuario.getUsuarioID());
 
         AdaptadorServicios adaptador = new AdaptadorServicios(getActivity());
-        ListView lvDomicilio = (ListView) view.findViewById(R.id.idLvDomicilio);
+        ListView lvDomicilio = (ListView) view.findViewById(R.id.idLvServicios);
         lvDomicilio.setAdapter(adaptador);
 
 
@@ -81,7 +81,6 @@ public class ReservaFragmento extends Fragment {
     }
 
     class AdaptadorServicios extends ArrayAdapter<EDireccion> {
-
         AdaptadorServicios(Activity context) {
             super(context, R.layout.domicilio, listarDomicilio);
         }
@@ -122,12 +121,12 @@ public class ReservaFragmento extends Fragment {
         }
     }
 
-   private void eventoBotonSiguiente(){
-        Reserva2Fragment fgReserva2 = new Reserva2Fragment();
+  private void eventoBotonSiguiente(){
+     /*   Reserva2Fragment fgReserva2 = new Reserva2Fragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.nav_host_fragment, fgReserva2);
-        ft.commit();
+        ft.commit();*/
     }
 
     public void irADireccion(){

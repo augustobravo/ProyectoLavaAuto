@@ -10,23 +10,28 @@
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/singButton"
-        android:layout_width="58dp"
-        android:layout_height="29dp"
+        android:layout_width="159dp"
+        android:layout_height="55dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginEnd="63dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="252dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idIwPrincipal" />
+        app:layout_constraintTop_toBottomOf="@+id/idIwPrincipal"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/idIwPrincipal"
         android:layout_width="402dp"
         android:layout_height="376dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="3dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/principal" />
@@ -35,16 +40,19 @@
         android:id="@+id/idBtnIngresarPrincipal"
         android:layout_width="102dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="269dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="#DF1304"
         android:onClick="eventoBotonIngresar"
         android:text="@string/btnIngresarPrincipal"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
+        android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText4" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -61,19 +69,16 @@
         app:barrierDirection="top" />
 
     <EditText
-        android:id="@+id/txtUsuario"
+        android:id="@+id/txtDocumento"
         android:layout_width="160dp"
         android:layout_height="41dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="113dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         android:ems="10"
         android:hint="Dni"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/txtPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idIwPrincipal" />
 
@@ -82,31 +87,30 @@
         android:layout_width="160dp"
         android:layout_height="39dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="113dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="Contraseña"
         android:inputType="textPassword"
         android:scrollbarDefaultDelayBeforeFade="400"
         app:layout_constraintBottom_toTopOf="@+id/idBtnIngresarPrincipal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/singButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtUsuario" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDocumento" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginBottom="60dp"
-        android:gravity="center"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="268dp"
         android:onClick="registrarUsuario"
         android:text="REGISTRATE AQUI"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idBtnIngresarPrincipal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

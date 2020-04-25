@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Lavado de Autos Rayo McQueen</string>
     <string name="txtNombrePrincipal">Lavado de Autos Rayo McQueen</string>
-    <string name="btnIngresarPrincipal">Ingresar</string>
+    <string name="btnIngresarPrincipal">Iniciar Sesion</string>
     <string name="title_activity_menu_navegable">MenuNavegable</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -12,7 +12,7 @@
 
     <string name="menu_servicio">Servicios</string>
     <string name="menu_reserva">Reserva</string>
-    <string name="menu_estado">Estado Servicio</string>
+    <string name="menu_estado">Estado Orden Servicio</string>
     <string name="menu_cliente">Clientes</string>
     <string name="menu_detalle_servicio">Detalle Servicio</string>
 
