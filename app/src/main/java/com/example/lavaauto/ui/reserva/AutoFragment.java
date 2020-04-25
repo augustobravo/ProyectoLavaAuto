@@ -56,15 +56,15 @@ public class AutoFragment extends Fragment {
         eAuto.setModelo(txtModelo.getText().toString());
         eAuto.setMarca(txtMarca.getText().toString());
         lavaAutoDAO.registrarAuto(eAuto);
-        irAReserva2();
+       // irAReserva2();
     }
 
-    private void irAReserva2(){
+   /* private void irAReserva2(){
         Reserva2Fragment fgReserva2 = new Reserva2Fragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.nav_host_fragment, fgReserva2);
         ft.addToBackStack(null);
         ft.commit();
-    }
+    }*/
 }

@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.lavaauto.ui.entidad.EAuto;
 import com.example.lavaauto.ui.entidad.EDireccion;
+import com.example.lavaauto.ui.entidad.EOrdenServicio;
 import com.example.lavaauto.ui.entidad.EReserva;
 import com.example.lavaauto.ui.entidad.EUsuario;
 
@@ -178,4 +179,32 @@ public class LavaAutoDAO {
         }
         return filas;
     }
+
+    public ArrayList<EOrdenServicio> obtenerOrdenesServicio(int UsuarioID){
+        ArrayList<EOrdenServicio> ordenServicios = new ArrayList<EOrdenServicio>();
+        try {
+            Statement st = conectarBD().createStatement();
+            String sql = "select ReservaID, UsuarioID, FecReserva, Estado from RESERVA where UsuarioID = "+ UsuarioID;
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()){
+                EOrdenServicio EordenServicio = new EOrdenServicio();
+                EordenServicio.setReservaID(rs.getInt("ReservaID"));
+                EordenServicio.setUsuarioID(rs.getInt("UsuarioID"));
+                EordenServicio.setFecReserva(rs.getDate("FecReserva"));
+                EordenServicio.setEstado(rs.getInt("Estado"));
+                ordenServicios.add(EordenServicio);
+            }
+        }catch (SQLException ex) {
+            Log.i("obtenerOS==> ", ex.getMessage());
+        }
+        return ordenServicios;
+    /*private int ReservaID;
+    private int ServicioID;
+    private int UsuarioID;
+    private Date FecReserva;
+    private int Estado;*/
+    }
+
+
 }
