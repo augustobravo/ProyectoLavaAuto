@@ -115,7 +115,6 @@ public class Reserva2Fragment extends Fragment {
                 public void onClick(View view) {
                     selectedPosition = (Integer)view.getTag();
                     notifyDataSetChanged();
-                    Constants.auto = listarAutos.get(position);
                 }
             });
             return item;
@@ -132,6 +131,7 @@ public class Reserva2Fragment extends Fragment {
     }
 
     private void eventoBotonSiguiente(){
+        Constants.auto = listarAutos.get(selectedPosition);
         Reserva3Fragment fgReserva3 = new Reserva3Fragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();

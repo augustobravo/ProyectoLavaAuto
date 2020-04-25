@@ -7,6 +7,7 @@ import com.example.lavaauto.ui.entidad.EAuto;
 import com.example.lavaauto.ui.entidad.EDireccion;
 import com.example.lavaauto.ui.entidad.EOrdenServicio;
 import com.example.lavaauto.ui.entidad.EReserva;
+import com.example.lavaauto.ui.entidad.EServicio;
 import com.example.lavaauto.ui.entidad.EUsuario;
 
 import java.sql.Connection;
@@ -15,6 +16,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -199,12 +202,58 @@ public class LavaAutoDAO {
             Log.i("obtenerOS==> ", ex.getMessage());
         }
         return ordenServicios;
-    /*private int ReservaID;
-    private int ServicioID;
-    private int UsuarioID;
-    private Date FecReserva;
-    private int Estado;*/
     }
 
+
+    public ArrayList<EReserva> listarReservaRegistradas(){
+        ArrayList<EReserva> reservas = new ArrayList<EReserva>();
+        try {
+            Statement st = conectarBD().createStatement();
+            String sql = "SELECT A.ReservaID, A.ServicioID, B.Descripcion, B.Precio, A.UsuarioID,\n" +
+                    "       C.Docume, C.Nombre, A.UsuarioDirID, D.Direccion, D.Distrito, A.UsuarioAutoID,\n" +
+                    "       E.Placa, E.Modelo, E.Marca, A.FecReserva, A.HorReserva, A.Estado, A.FormaPagoID \n" +
+                    "FROM [dbo].[RESERVA] A\n" +
+                    "    INNER JOIN [dbo].[SERVICIO] B ON A.ServicioID = B.ServicioID\n" +
+                    "    INNER JOIN [dbo].[USUARIO] C ON A.UsuarioID = C.UsuarioID\n" +
+                    "    INNER JOIN [dbo].[USUARIODIRECCION] D ON A.UsuarioDirID = D.UsuarioDirID\n" +
+                    "    INNER JOIN [dbo].[USUARIOAUTO] E ON A.UsuarioAutoID = E.UsuarioAutoID WHERE A.Estado = 1";
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()){
+                EReserva eReserva = new EReserva();
+                eReserva.setReservaID(rs.getInt("ReservaID"));
+                eReserva.setServicio(new EServicio());
+                eReserva.getServicio().setServicioID(rs.getInt("ServicioID"));
+                eReserva.getServicio().setNombreServicio(rs.getString("Descripcion"));
+                eReserva.getServicio().setPrecio(rs.getDouble("Precio"));
+                eReserva.setUsuario(new EUsuario());
+                eReserva.getUsuario().setUsuarioID(rs.getInt("UsuarioID"));
+                eReserva.getUsuario().setDocume(rs.getString("Docume"));
+                eReserva.getUsuario().setNombre(rs.getString("Nombre"));
+                eReserva.setUsuarioDir(new EDireccion());
+                eReserva.getUsuarioDir().setUsuarioDirID(rs.getInt("UsuarioDirID"));
+                eReserva.getUsuarioDir().setDomicilio(rs.getString("Direccion"));
+                eReserva.getUsuarioDir().setDistrito(rs.getString("Distrito"));
+                eReserva.setUsuarioAuto(new EAuto());
+                eReserva.getUsuarioAuto().setUsuarioAutoID(rs.getInt("UsuarioAutoID"));
+                eReserva.getUsuarioAuto().setPlaca(rs.getString("Placa"));
+                eReserva.getUsuarioAuto().setModelo(rs.getString("Modelo"));
+                eReserva.getUsuarioAuto().setMarca(rs.getString("Marca"));
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String strDate = dateFormat.format(rs.getDate("FecReserva"));
+                eReserva.setFecReserva(strDate);
+                dateFormat = new SimpleDateFormat("HH:mm");
+                String strTime = dateFormat.format(rs.getTime("HorReserva"));
+                eReserva.setHorReserva(strTime);
+                eReserva.setEstado(rs.getInt("Estado"));
+                eReserva.setFormaPagoID(rs.getInt("FormaPagoID"));
+
+                reservas.add(eReserva);
+            }
+        }catch (SQLException ex) {
+            Log.i("listarReserva==> ", ex.getMessage());
+        }
+        return reservas;
+    }
 
 }

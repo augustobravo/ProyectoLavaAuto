@@ -54,18 +54,18 @@ public class ReservaFragmento extends Fragment {
         servicios.add("Pack PREMIUM");
         servicios.add("Pack DELUXE");
 
-        ArrayAdapter<String> adapter =  new ArrayAdapter<String>(getActivity(),  android.R.layout.simple_spinner_dropdown_item, servicios);
-        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        ArrayAdapter<String> adapterSpin =  new ArrayAdapter<String>(getActivity(),  android.R.layout.simple_spinner_dropdown_item, servicios);
+        adapterSpin.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapterSpin);
         if(Constants.servicio != null && Constants.servicio.getNombreServicio() != null){
-            int spinnerPosition = adapter.getPosition(Constants.servicio.getNombreServicio());
+            int spinnerPosition = adapterSpin.getPosition(Constants.servicio.getNombreServicio());
             spinner.setSelection(spinnerPosition);
         }
 
         listarDomicilio = new LavaAutoDAO().obtenerDirecciones(Constants.usuario.getUsuarioID());
 
         AdaptadorServicios adaptador = new AdaptadorServicios(getActivity());
-        ListView lvDomicilio = (ListView) view.findViewById(R.id.idLvServicios);
+        ListView lvDomicilio = (ListView) view.findViewById(R.id.idLvDomicilio);
         lvDomicilio.setAdapter(adaptador);
 
 
@@ -99,7 +99,6 @@ public class ReservaFragmento extends Fragment {
                 public void onClick(View v) {
                     LavaAutoDAO lavaAutoDAO = new LavaAutoDAO();
                     lavaAutoDAO.eliminarDireccion(listarDomicilio.get(position).getUsuarioDirID());
-                   // adapter.remove(adapter.getItem(position));
                     notifyDataSetChanged();
                     Toast.makeText(getActivity(),"Registro Eliminado", Toast.LENGTH_LONG).show();
                 }
@@ -113,21 +112,21 @@ public class ReservaFragmento extends Fragment {
                 public void onClick(View view) {
                     selectedPosition = (Integer)view.getTag();
                     notifyDataSetChanged();
-                    Constants.direccion = listarDomicilio.get(position);
-                }
+               }
             });
 
             return item;
         }
     }
 
-  private void eventoBotonSiguiente(){
-     /*   Reserva2Fragment fgReserva2 = new Reserva2Fragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.replace(R.id.nav_host_fragment, fgReserva2);
-        ft.commit();*/
-    }
+  private void eventoBotonSiguiente() {
+      Constants.direccion = listarDomicilio.get(selectedPosition);
+      Reserva2Fragment fgReserva2 = new Reserva2Fragment();
+      FragmentManager fragmentManager = getFragmentManager();
+      FragmentTransaction ft = fragmentManager.beginTransaction();
+      ft.replace(R.id.nav_host_fragment, fgReserva2);
+      ft.commit();
+  }
 
     public void irADireccion(){
         DomicilioFragment fgDomicilio = new DomicilioFragment();

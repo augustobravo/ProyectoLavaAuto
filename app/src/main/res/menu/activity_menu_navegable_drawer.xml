@@ -25,6 +25,11 @@
             android:icon="@mipmap/estado"
             android:title="Consultas"/>
 
+        <item
+            android:id="@+id/nav_supervisor"
+            android:icon="@mipmap/estado_completada"
+            android:title="Supervisor" />
+
     </group>
 
 
