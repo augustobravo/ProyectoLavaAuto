@@ -119,10 +119,10 @@ public class ServicioFragmento extends Fragment {
 
             textView1.setText(listarServicios.get(position).getNombreServicio());
             imageView1.setImageResource(listarServicios.get(position).getImagenID());
-            Constants.servicio = listarServicios.get(position);
             btnDetalle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Constants.servicio = listarServicios.get(position);
                     cambiarFragmentoDetalleServicio();
                 }
             });
@@ -134,7 +134,6 @@ public class ServicioFragmento extends Fragment {
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction ft = fragmentManager.beginTransaction();
             ft.replace(R.id.nav_host_fragment, fgDetalleServicio);
-            ft.addToBackStack(null);
             ft.commit();
         }
     }

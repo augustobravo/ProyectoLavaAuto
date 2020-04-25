@@ -1,4 +1,4 @@
-package com.example.lavaauto;
+package com.example.lavaauto.ui.reserva;
 
 
 import android.Manifest;
@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.lavaauto.R;
 import com.example.lavaauto.dao.LavaAutoDAO;
 import com.example.lavaauto.ui.entidad.EDireccion;
 import com.example.lavaauto.ui.reserva.ReservaFragmento;

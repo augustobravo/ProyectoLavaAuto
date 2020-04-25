@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.lavaauto.ui.entidad.EAuto;
 import com.example.lavaauto.ui.entidad.EDireccion;
+import com.example.lavaauto.ui.entidad.EReserva;
 import com.example.lavaauto.ui.entidad.EUsuario;
 
 import java.sql.Connection;
@@ -97,7 +98,7 @@ public class LavaAutoDAO {
                 dirrecciones.add(eDireccion);
             }
         }catch (SQLException ex) {
-            Log.i("obtenerUsuario==> ", ex.getMessage());
+            Log.i("obtenerDirecciones==> ", ex.getMessage());
         }
         return dirrecciones;
     }
@@ -110,11 +111,70 @@ public class LavaAutoDAO {
             pst.setInt(1, auto.getUsuarioID());
             pst.setString(2, auto.getPlaca());
             pst.setString(3, auto.getModelo());
-            pst.setString(3, auto.getMarca());
+            pst.setString(4, auto.getMarca());
             filas = pst.executeUpdate();
 
         }catch (SQLException ex){
             Log.i("registrarAuto==> ", ex.getMessage());
+        }
+        return filas;
+    }
+
+    public int eliminarAuto(int UsuarioAutoID){
+        int filas = 0;
+        try {
+            String sql ="delete from USUARIOAUTO where UsuarioAutoID = ? ";
+            PreparedStatement pst= conectarBD().prepareStatement(sql);
+            pst.setInt(1, UsuarioAutoID);
+            filas = pst.executeUpdate();
+
+        }catch (SQLException ex){
+            Log.i("eliminarAuto==> ", ex.getMessage());
+        }
+        return filas;
+    }
+
+    public ArrayList<EAuto> obtenerAutos(int UsuarioID){
+        ArrayList<EAuto> dirrecciones = new ArrayList<EAuto>();
+        try {
+            Statement st = conectarBD().createStatement();
+            String sql = "select UsuarioID, UsuarioAutoID, Placa, Modelo, Marca from USUARIOAUTO where UsuarioID = "+ UsuarioID;
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()){
+                EAuto eAuto = new EAuto();
+                eAuto.setUsuarioID(rs.getInt("UsuarioID"));
+                eAuto.setUsuarioAutoID(rs.getInt("UsuarioAutoID"));
+                eAuto.setPlaca(rs.getString("Placa"));
+                eAuto.setModelo(rs.getString("Modelo"));
+                eAuto.setMarca(rs.getString("Marca"));
+
+                dirrecciones.add(eAuto);
+            }
+        }catch (SQLException ex) {
+            Log.i("obtenerAutos==> ", ex.getMessage());
+        }
+        return dirrecciones;
+    }
+
+    public int registraReserva(EReserva eReserva){
+        int filas = 0;
+        try {
+            String sql ="insert into RESERVA values (?,?,?,?,?,?,?,?)";
+            PreparedStatement pst= conectarBD().prepareStatement(sql);
+            pst.setInt(1, eReserva.getServicio().getServicioID());
+            pst.setInt(2, eReserva.getUsuario().getUsuarioID());
+            pst.setInt(3, eReserva.getUsuarioAuto().getUsuarioAutoID());
+            pst.setInt(4, eReserva.getUsuarioDir().getUsuarioDirID());
+            pst.setString(5,eReserva.getFecReserva());
+            pst.setString(6,eReserva.getHorReserva());
+            pst.setInt(7, eReserva.getEstado());
+            pst.setInt(8,eReserva.getFormaPagoID());
+
+            filas = pst.executeUpdate();
+
+        }catch (SQLException ex){
+            Log.i("registraReserva==> ", ex.getMessage());
         }
         return filas;
     }

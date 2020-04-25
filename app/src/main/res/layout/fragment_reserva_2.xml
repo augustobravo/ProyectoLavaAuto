@@ -31,13 +31,6 @@
                 android:src="@mipmap/carro" />
 
             <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_span="1"
-                android:src="@mipmap/calendario" />
-
-            <ImageButton
                 android:id="@+id/imageButton4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -76,13 +69,13 @@
                 android:layout_marginLeft="10dp"
                 android:text="@string/txtNombreCliente" />
 
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_span="2"
-                android:ems="10"
-                android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/txtCliente"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_span="3" />
 
         </TableRow>
 
@@ -94,24 +87,23 @@
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:text="@string/txtNombreTipoDocumento" />
 
-            <Spinner
-                android:id="@+id/idSpServicio"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/txtTipoDocumento"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:layout_span="2"
-                android:entries="@array/tipodocumento_array"
-                android:prompt="@string/servicio_prompt" />
+                android:layout_marginRight="10dp"
+                android:layout_span="3" />
+
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp">
 
             <TextView
@@ -121,12 +113,13 @@
                 android:layout_marginLeft="10dp"
                 android:text="@string/txtNombreDocumento" />
 
-            <EditText
-                android:id="@+id/editText2"
+            <TextView
+                android:id="@+id/txtDocumento2"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_span="2"
-                android:ems="10"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_span="3"
                 android:inputType="textPersonName" />
         </TableRow>
         <TableRow
@@ -135,14 +128,23 @@
             android:gravity="right">
 
             <Button
-                android:id="@+id/btnRegistrarDireccion"
+                android:id="@+id/btnRegistrarAuto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="20dp"
-                android:background="#8A8585"
+                android:background="@color/colorPrimary"
                 android:text="@string/btnAgregarAuto"
                 android:textColor="#FFFFFF" />
+        </TableRow>
+        <TableRow android:layout_width="match_parent">
+
+            <include
+                layout="@layout/header_auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="4"
+                android:layout_weight="1" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -152,8 +154,9 @@
                 android:id="@+id/idLvAuto"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="50dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
                 android:layout_span="4" />
         </TableRow>
 
@@ -168,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_span="2"
+                android:layout_span="1"
                 android:background="@color/colorPrimary"
                 android:text="@string/btnAtras"
                 android:textColor="#FFFFFF" />
@@ -176,10 +179,10 @@
             <Button
                 android:id="@+id/idBtnSiguiente1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="10dp"
-                android:layout_span="2"
+                android:layout_span="1"
                 android:background="@color/colorPrimary"
                 android:text="@string/btnSiguiente"
                 android:textColor="#FFFFFF" />

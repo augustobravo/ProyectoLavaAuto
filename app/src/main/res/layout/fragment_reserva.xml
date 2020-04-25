@@ -37,12 +37,7 @@
                 android:layout_span="1"
                 android:src="@mipmap/calendario" />
 
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_span="1"
-                android:src="@mipmap/pago" />
+
         </TableRow>
 
         <TableRow
@@ -97,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="20dp"
-                android:background="#8A8585"
+                android:background="@color/colorPrimary"
                 android:text="@string/btnAgregarDireccion"
                 android:textColor="#FFFFFF" />
         </TableRow>
@@ -118,7 +113,7 @@
             <ListView
                 android:id="@+id/idLvDomicilio"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginBottom="20dp"
                 android:layout_span="4"

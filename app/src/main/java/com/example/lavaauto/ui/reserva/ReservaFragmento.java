@@ -1,8 +1,6 @@
 package com.example.lavaauto.ui.reserva;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.icu.lang.UCharacter;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,24 +10,18 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.lavaauto.DomicilioFragment;
 import com.example.lavaauto.R;
 import com.example.lavaauto.dao.LavaAutoDAO;
 import com.example.lavaauto.ui.entidad.EDireccion;
-import com.example.lavaauto.ui.entidad.EServicio;
-import com.example.lavaauto.ui.servicio.DetalleServicioFragment;
-import com.example.lavaauto.ui.servicio.ServicioFragmento;
 import com.example.lavaauto.ui.utilitario.Constants;
 
 import java.util.ArrayList;
