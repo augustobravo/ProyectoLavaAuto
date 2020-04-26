@@ -13,15 +13,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.lavaauto.R;
 import com.example.lavaauto.dao.LavaAutoDAO;
-import com.example.lavaauto.ui.entidad.EDireccion;
 import com.example.lavaauto.ui.entidad.EReserva;
-import com.example.lavaauto.ui.reserva.ReservaFragmento;
 import com.example.lavaauto.ui.utilitario.Constants;
 
 import java.util.ArrayList;
@@ -38,7 +34,7 @@ public class SupervisorFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_supervisor, container, false);
+        View view = inflater.inflate(R.layout.fragment_orden_servicio, container, false);
 
         listarReserva = new LavaAutoDAO().listarReservaRegistradas();
 
@@ -76,7 +72,7 @@ public class SupervisorFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Constants.reserva = listarReserva.get(position);
-                    SupervisorDetalleFragment fgSupervisorDetalle = new SupervisorDetalleFragment();
+                    OrdenServicioDetalleFragment fgSupervisorDetalle = new OrdenServicioDetalleFragment();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction ft = fragmentManager.beginTransaction();
                     ft.replace(R.id.nav_host_fragment, fgSupervisorDetalle);

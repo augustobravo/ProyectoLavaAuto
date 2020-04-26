@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.supervisor.SupervisorDetalleFragment">
+    tools:context=".ui.supervisor.OrdenServicioDetalleFragment">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -246,31 +246,33 @@
                     android:layout_height="match_parent"
                     android:gravity="center">
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/idBtnCancelar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
-                        android:background="@color/colorAccent"
-                        android:text="SALIR"
-                        android:textColor="#F00000" />
+                        android:src="@mipmap/supe1" />
 
-                    <Button
+                    <ImageButton
+                        android:id="@+id/idBtnReprogramar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:src="@mipmap/reserva" />
+
+                    <ImageButton
                         android:id="@+id/idBtnRechazar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
-                        android:background="@color/colorPrimary"
-                        android:text="RECHAZAR"
-                        android:textColor="#FFFFFF" />
+                        android:src="@mipmap/supe2" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/idBtnEnviarOrden"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#4CAF50"
-                        android:text="ENVIAR ORDEN"
-                        android:textColor="#FFFFFF" />
+                        android:src="@mipmap/supe3" />
+
                 </TableRow>
 
             </TableLayout>

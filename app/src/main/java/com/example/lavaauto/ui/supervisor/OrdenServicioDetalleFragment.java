@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +18,7 @@ import com.example.lavaauto.dao.LavaAutoDAO;
 import com.example.lavaauto.ui.entidad.EReserva;
 import com.example.lavaauto.ui.utilitario.Constants;
 
-public class SupervisorDetalleFragment extends Fragment {
+public class OrdenServicioDetalleFragment extends Fragment {
 
     private LavaAutoDAO lavaAutoDAO;
     private EReserva eReserva;
@@ -32,7 +32,7 @@ public class SupervisorDetalleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_supervisor_detalle, container, false);
+        View view = inflater.inflate(R.layout.fragment_orden_servicio_detalle, container, false);
 
         lavaAutoDAO = new LavaAutoDAO();
 
@@ -61,9 +61,10 @@ public class SupervisorDetalleFragment extends Fragment {
             lblFormaPago.setText("Transferencia electrónica");
         }
 
-        Button btnSalir = (Button) view.findViewById(R.id.idBtnCancelar);
-        Button btnRechazar = (Button) view.findViewById(R.id.idBtnRechazar);
-        Button btnEnviarOrden = (Button) view.findViewById(R.id.idBtnEnviarOrden);
+        ImageButton btnSalir = (ImageButton) view.findViewById(R.id.idBtnCancelar);
+        ImageButton btnRechazar = (ImageButton) view.findViewById(R.id.idBtnRechazar);
+        ImageButton btnEnviarOrden = (ImageButton) view.findViewById(R.id.idBtnEnviarOrden);
+        ImageButton btnReprogramar = (ImageButton) view.findViewById(R.id.idBtnReprogramar);
 
         btnSalir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +91,14 @@ public class SupervisorDetalleFragment extends Fragment {
            }
        });
 
+       btnReprogramar.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               Toast.makeText(getActivity(),"Reprogramación Relizada", Toast.LENGTH_LONG).show();
+               irASupervisor();
+           }
+       });
         return view;
     }
 

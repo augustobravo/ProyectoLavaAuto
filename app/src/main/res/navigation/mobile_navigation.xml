@@ -46,5 +46,5 @@
         android:id="@+id/nav_supervisor"
         android:name="com.example.lavaauto.ui.supervisor.SupervisorFragment"
         android:label="Supervisor"
-        tools:layout="@layout/fragment_supervisor" />
+        tools:layout="@layout/fragment_orden_servicio" />
 </navigation>

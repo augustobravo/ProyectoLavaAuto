@@ -13,7 +13,7 @@
     <string name="menu_servicio">Servicios</string>
     <string name="menu_reserva">Reserva</string>
     <string name="menu_estado">Estado Orden Servicio</string>
-    <string name="menu_cliente">Clientes</string>
+    <string name="menu_cliente">Perfil</string>
     <string name="menu_detalle_servicio">Detalle Servicio</string>
 
     <string name="home_second">Home Second</string>

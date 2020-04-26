@@ -204,7 +204,6 @@ public class LavaAutoDAO {
         return ordenServicios;
     }
 
-
     public ArrayList<EReserva> listarReservaRegistradas(){
         ArrayList<EReserva> reservas = new ArrayList<EReserva>();
         try {
@@ -267,6 +266,22 @@ public class LavaAutoDAO {
 
         }catch (SQLException ex){
             Log.i("actualizarEstadoRes==> ", ex.getMessage());
+        }
+        return filas;
+    }
+
+    public int reprogramarReserva(int ReservaID, String Fecha , String Hora){
+        int filas = 0;
+        try {
+            String sql ="Update RESERVA set FecReserva = ? and HorReserva = ? where ReservaID = ? ";
+            PreparedStatement pst= conectarBD().prepareStatement(sql);
+            pst.setString(1, Fecha);
+            pst.setString(2, Hora);
+            pst.setInt(2, ReservaID);
+            filas = pst.executeUpdate();
+
+        }catch (SQLException ex){
+            Log.i("reprogramacion==> ", ex.getMessage());
         }
         return filas;
     }
