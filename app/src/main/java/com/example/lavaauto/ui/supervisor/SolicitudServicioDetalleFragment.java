@@ -18,7 +18,7 @@ import com.example.lavaauto.dao.LavaAutoDAO;
 import com.example.lavaauto.ui.entidad.EReserva;
 import com.example.lavaauto.ui.utilitario.Constants;
 
-public class OrdenServicioDetalleFragment extends Fragment {
+public class SolicitudServicioDetalleFragment extends Fragment {
 
     private LavaAutoDAO lavaAutoDAO;
     private EReserva eReserva;
@@ -32,7 +32,7 @@ public class OrdenServicioDetalleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_orden_servicio_detalle, container, false);
+        View view = inflater.inflate(R.layout.fragment_solicitud_servicio_detalle, container, false);
 
         lavaAutoDAO = new LavaAutoDAO();
 
@@ -107,7 +107,7 @@ public class OrdenServicioDetalleFragment extends Fragment {
 
     private void irASupervisor()
     {
-        OrdenServicioFragment fgSupervisor = new OrdenServicioFragment();
+        SolicitudServicioFragment fgSupervisor = new SolicitudServicioFragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.nav_host_fragment, fgSupervisor);

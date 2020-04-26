@@ -111,7 +111,7 @@ public class ReprogramarFragment extends Fragment {
         btnSalir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OrdenServicioDetalleFragment fgSupervisorDetalle = new OrdenServicioDetalleFragment();
+                SolicitudServicioDetalleFragment fgSupervisorDetalle = new SolicitudServicioDetalleFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 ft.replace(R.id.nav_host_fragment, fgSupervisorDetalle);
@@ -138,7 +138,7 @@ public class ReprogramarFragment extends Fragment {
 
                 Toast.makeText(getActivity(),"Reprogramacion Realizada", Toast.LENGTH_LONG).show();
 
-                OrdenServicioFragment fgSupervisor = new OrdenServicioFragment();
+                SolicitudServicioFragment fgSupervisor = new SolicitudServicioFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 ft.replace(R.id.nav_host_fragment, fgSupervisor);

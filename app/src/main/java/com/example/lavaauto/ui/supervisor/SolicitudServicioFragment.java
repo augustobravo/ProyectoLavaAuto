@@ -22,7 +22,7 @@ import com.example.lavaauto.ui.utilitario.Constants;
 
 import java.util.ArrayList;
 
-public class OrdenServicioFragment extends Fragment {
+public class SolicitudServicioFragment extends Fragment {
 
     private ArrayList<EReserva> listarReserva;
 
@@ -34,7 +34,19 @@ public class OrdenServicioFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_orden_servicio, container, false);
+        View view = inflater.inflate(R.layout.fragment_solicitud_servicio, container, false);
+
+        ImageButton btnMenuPrincipal =(ImageButton)view.findViewById(R.id.idBtnMenuPrincipal);
+        btnMenuPrincipal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MenuSupervisorFragment fgMenu = new MenuSupervisorFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.nav_host_fragment, fgMenu);
+                ft.commit();
+            }
+        });
 
         listarReserva = new LavaAutoDAO().listarReservaRegistradas();
 
@@ -72,7 +84,7 @@ public class OrdenServicioFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Constants.reserva = listarReserva.get(position);
-                    OrdenServicioDetalleFragment fgSupervisorDetalle = new OrdenServicioDetalleFragment();
+                    SolicitudServicioDetalleFragment fgSupervisorDetalle = new SolicitudServicioDetalleFragment();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction ft = fragmentManager.beginTransaction();
                     ft.replace(R.id.nav_host_fragment, fgSupervisorDetalle);
