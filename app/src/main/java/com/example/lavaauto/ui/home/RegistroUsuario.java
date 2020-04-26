@@ -1,5 +1,6 @@
 package com.example.lavaauto.ui.home;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
@@ -13,7 +14,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,10 +22,7 @@ import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-
 import com.example.lavaauto.MainActivity;
 import com.example.lavaauto.MenuNavegable;
 import com.example.lavaauto.R;
@@ -35,10 +32,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 public class RegistroUsuario extends AppCompatActivity {
 
     private EditText txtNombres;
@@ -64,7 +58,7 @@ public class RegistroUsuario extends AppCompatActivity {
         txtNacimiento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(RegistroUsuario.this, date, calendario1
+                new DatePickerDialog(RegistroUsuario.this, date1, calendario1
                         .get(Calendar.YEAR), calendario1.get(Calendar.MONTH),
                         calendario1.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -72,14 +66,14 @@ public class RegistroUsuario extends AppCompatActivity {
         txtfecharegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(RegistroUsuario.this, date, calendario2
+                new DatePickerDialog(RegistroUsuario.this, date2, calendario2
                         .get(Calendar.YEAR), calendario2.get(Calendar.MONTH),
                         calendario2.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
     }
-    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+    DatePickerDialog.OnDateSetListener date1 = new DatePickerDialog.OnDateSetListener() {
 
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -89,6 +83,15 @@ public class RegistroUsuario extends AppCompatActivity {
             calendario1.set(Calendar.MONTH, monthOfYear);
             calendario1.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             actualizarInput();
+        }
+
+    };
+    DatePickerDialog.OnDateSetListener date2 = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            // TODO Auto-generated method stub
             calendario2.set(Calendar.YEAR, year);
             calendario2.set(Calendar.MONTH, monthOfYear);
             calendario2.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -182,55 +185,6 @@ public class RegistroUsuario extends AppCompatActivity {
                 }
             }
         });
-
-
-        /*StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast toast = Toast.makeText(RegistroUsuario.this , "Se insertó correctamente Usuario", Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // As of f605da3 the following should work
-                        NetworkResponse response = error.networkResponse;
-                        if (error instanceof ServerError && response != null) {
-                            try {
-                                String res = new String(response.data,
-                                        HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                                // Now you can use any deserializer to make sense of data
-                                JSONObject obj = new JSONObject(res);
-                            } catch (UnsupportedEncodingException e1) {
-                                // Couldn't properly decode data to string
-                                Log.i("e1====>", e1.toString());
-                             } catch (JSONException e2) {
-                                // returned data is not JSONObject?
-                                Log.i("e2====>", e2.toString());
-                            }
-                        }
-
-                    }
-                }
-        ) {
-           @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap();
-                params.put("Nombres", txtNombres.getText().toString());
-                params.put("Password", txtpassword.getText().toString());
-                params.put("FechaNacimiento", txtNacimiento.getText().toString());
-                params.put("Documento", txtdocumento.getText().toString());
-                params.put("FechaRegistro", txtfecharegistro.getText().toString());
-                params.put("UsuariosID","0");
-                params.put("autos","[]");
-                params.put("direcciones","[]");
-                return params;
-            }
-        };*/
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
            byte[] bytes = jsonObjectRequest.getBody();
@@ -239,7 +193,7 @@ public class RegistroUsuario extends AppCompatActivity {
                     String str = new String(bytes, "UTF-8");
                     Log.i("Body ======>", str);
                     Toast toast = Toast.makeText(RegistroUsuario.this , "Se insertó Usuario ", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.END, 0, 0);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                     Intent ingresarmenu = new Intent(this, MenuNavegable.class);
                     startActivity(ingresarmenu);

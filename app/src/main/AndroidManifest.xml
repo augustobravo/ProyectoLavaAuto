@@ -21,7 +21,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCm9FAHpsNboPOtdC4v8KLbyH8r_2OfVUM" />
+            android:value="AIzaSyCl6HkWCjBrJB2p3o2tpVoHVYlpnZ9t9ng" />
 
         <activity android:name=".LogeoActivity" />
         <activity android:name=".ui.home.RegistroUsuario" />

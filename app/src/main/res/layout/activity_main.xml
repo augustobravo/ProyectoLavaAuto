@@ -109,6 +109,7 @@
         android:onClick="registrarUsuario"
         android:text="REGISTRATE AQUI"
         android:textSize="12sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idBtnIngresarPrincipal" />
