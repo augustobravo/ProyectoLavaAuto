@@ -95,8 +95,11 @@ public class OrdenServicioDetalleFragment extends Fragment {
            @Override
            public void onClick(View v) {
 
-               Toast.makeText(getActivity(),"Reprogramación Relizada", Toast.LENGTH_LONG).show();
-               irASupervisor();
+              ReprogramarFragment fgReprogramar = new ReprogramarFragment();
+               FragmentManager fragmentManager = getFragmentManager();
+               FragmentTransaction ft = fragmentManager.beginTransaction();
+               ft.replace(R.id.nav_host_fragment, fgReprogramar);
+               ft.commit();
            }
        });
         return view;

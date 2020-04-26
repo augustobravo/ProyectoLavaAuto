@@ -273,11 +273,11 @@ public class LavaAutoDAO {
     public int reprogramarReserva(int ReservaID, String Fecha , String Hora){
         int filas = 0;
         try {
-            String sql ="Update RESERVA set FecReserva = ? and HorReserva = ? where ReservaID = ? ";
+            String sql ="Update RESERVA set FecReserva = ? , HorReserva = ? where ReservaID = ? ";
             PreparedStatement pst= conectarBD().prepareStatement(sql);
             pst.setString(1, Fecha);
             pst.setString(2, Hora);
-            pst.setInt(2, ReservaID);
+            pst.setInt(3, ReservaID);
             filas = pst.executeUpdate();
 
         }catch (SQLException ex){
