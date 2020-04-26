@@ -256,4 +256,18 @@ public class LavaAutoDAO {
         return reservas;
     }
 
+    public int actualizarEstadoReserva(int ReservaID, int EstadoID){
+        int filas = 0;
+        try {
+            String sql ="Update RESERVA set Estado = ? where ReservaID = ? ";
+            PreparedStatement pst= conectarBD().prepareStatement(sql);
+            pst.setInt(1, EstadoID);
+            pst.setInt(2, ReservaID);
+            filas = pst.executeUpdate();
+
+        }catch (SQLException ex){
+            Log.i("actualizarEstadoRes==> ", ex.getMessage());
+        }
+        return filas;
+    }
 }

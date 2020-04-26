@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,6 +76,11 @@ public class SupervisorFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Constants.reserva = listarReserva.get(position);
+                    SupervisorDetalleFragment fgSupervisorDetalle = new SupervisorDetalleFragment();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction ft = fragmentManager.beginTransaction();
+                    ft.replace(R.id.nav_host_fragment, fgSupervisorDetalle);
+                    ft.commit();
                 }
             });
 

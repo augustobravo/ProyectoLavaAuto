@@ -58,4 +58,16 @@
         android:textColor="#FFFFFF"
         android:textStyle="bold"/>
 
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="2dp"
+        android:background="#E31304"
+        android:padding="10dp"
+        android:text="Opcion"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
 </LinearLayout>
