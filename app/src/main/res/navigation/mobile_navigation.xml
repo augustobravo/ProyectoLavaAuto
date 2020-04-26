@@ -47,4 +47,11 @@
         android:name="com.example.lavaauto.ui.supervisor.MenuSupervisorFragment"
         android:label="Supervisor"
         tools:layout="@layout/fragment_menu_supervisor" />
+
+    <fragment
+        android:id="@+id/nav_contacto"
+        android:name="com.example.lavaauto.ContactoFragment"
+        android:label="Supervisor"
+        tools:layout="@layout/fragment_contacto" />
+
 </navigation>
