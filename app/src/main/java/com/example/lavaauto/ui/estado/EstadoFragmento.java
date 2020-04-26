@@ -37,30 +37,32 @@ public class EstadoFragmento extends Fragment {
         listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20113", "Estado_completada"));
         listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20114", "Estado_completada"));*/
 
-      /*  listarOrdenServicios = new LavaAutoDAO().obtenerOrdenesServicio(Constants.usuario.getUsuarioID());
+       listarOrdenServicios = new LavaAutoDAO().obtenerOrdenesServicio(Constants.usuario.getUsuarioID());
         AdaptadorServicios adaptador = new AdaptadorServicios(getActivity());
         ListView lv1 = (ListView) view.findViewById(R.id.idLvOrdenServicio);
-        lv1.setAdapter(adaptador);*/
+        lv1.setAdapter(adaptador);
         return view;
     }
 
-    //class AdaptadorServicios extends ArrayAdapter<EOrdenServicio> {
-      //  AdaptadorServicios(Activity context) {
-           // super(context, R.layout.ordenservicio, listarOrdenServicios);
-       // }
+    class AdaptadorServicios extends ArrayAdapter<EOrdenServicio> {
+      AdaptadorServicios(Activity context) {
+            super(context, R.layout.ordenservicio, listarOrdenServicios);
+       }
 
         public View getView(final int position, View convertView, ViewGroup parent) {
 
             View item = LayoutInflater.from(getContext()).inflate(R.layout.ordenservicio, null);
             TextView txtordenservicio = (TextView)item.findViewById(R.id.idTxtOrdenServicio);
-            TextView txtservicio = (TextView) item.findViewById(R.id.idTxtServicio);
+            TextView txtusuarioID = (TextView)item.findViewById(R.id.idTxtUsuario);
+           // TextView txtservicio = (TextView) item.findViewById(R.id.idTxtServicio);
             TextView txtfecha = (TextView)item.findViewById(R.id.idTxtfecha);
             TextView txtestado = (TextView)item.findViewById(R.id.idTxtestado);
 
-            txtordenservicio.setText(listarOrdenServicios.get(position).getReservaID());
-            txtservicio.setText(listarOrdenServicios.get(position).getServicioID());
-            txtfecha.setText((CharSequence) listarOrdenServicios.get(position).getFecReserva());
-            txtestado.setText(listarOrdenServicios.get(position).getEstado());
+            txtordenservicio.setText(String.valueOf(listarOrdenServicios.get(position).getReservaID()));
+            txtusuarioID.setText(Integer.toString(listarOrdenServicios.get(position).getUsuarioID()));
+            //txtservicio.setText(Integer.toString(listarOrdenServicios.get(position).getServicioID()));
+            txtfecha.setText(listarOrdenServicios.get(position).getFecReserva());
+            txtestado.setText(Integer.toString(listarOrdenServicios.get(position).getEstado()));
 
             RadioButton rbSeleccion = (RadioButton)item.findViewById(R.id.idRbSeleccionar);
             rbSeleccion.setChecked(position == selectedPosition);
@@ -111,4 +113,4 @@ public class EstadoFragmento extends Fragment {
             }
         }
     }
-//}
+}
