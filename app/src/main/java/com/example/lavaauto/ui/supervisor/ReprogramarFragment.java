@@ -134,7 +134,7 @@ public class ReprogramarFragment extends Fragment {
 
                 Constants.reserva.setHorReserva(txtHoraServicio.getText().toString());
 
-                int fila = new LavaAutoDAO().reprogramarReserva(Constants.reserva.getReservaID(), Constants.reserva.getFecReserva(),Constants.reserva.getHorReserva());
+                int fila = new LavaAutoDAO().reprogramarOrdenServicio(Constants.reserva.getOrdenID(), Constants.reserva.getFecReserva(),Constants.reserva.getHorReserva());
 
                 Toast.makeText(getActivity(),"Reprogramacion Realizada", Toast.LENGTH_LONG).show();
 

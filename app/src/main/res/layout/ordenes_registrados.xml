@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/idTxtReservaID1"
+        android:layout_width="10dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="2dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/idTxtClienteServicio1"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/idTxtOrdenServicio1"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/idTxtFechaReservaServicio1"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/idTxtHoraReservaServicio1"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <ImageButton
+        android:id="@+id/idBtnEditarDetalleReserva"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:src="@mipmap/editar" />
+
+</LinearLayout>

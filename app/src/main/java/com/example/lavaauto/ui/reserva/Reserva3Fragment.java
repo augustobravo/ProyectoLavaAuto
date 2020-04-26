@@ -22,8 +22,7 @@ import android.widget.Toast;
 
 import com.example.lavaauto.R;
 import com.example.lavaauto.dao.LavaAutoDAO;
-import com.example.lavaauto.ui.entidad.EReserva;
-import com.example.lavaauto.ui.home.RegistroUsuario;
+import com.example.lavaauto.ui.entidad.EOrdenServicio;
 import com.example.lavaauto.ui.servicio.ServicioFragmento;
 import com.example.lavaauto.ui.utilitario.Constants;
 
@@ -33,7 +32,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
-import java.util.Locale;
 
 
 public class Reserva3Fragment extends Fragment {
@@ -137,23 +135,23 @@ public class Reserva3Fragment extends Fragment {
 
     private void eventoReservar(){
         LavaAutoDAO lavaAutoDAO = new LavaAutoDAO();
-        EReserva eReserva =new EReserva();
-        eReserva.setServicio(Constants.servicio);
-        eReserva.setUsuario(Constants.usuario);
-        eReserva.setUsuarioDir(Constants.direccion);
-        eReserva.setUsuarioAuto(Constants.auto);
+        EOrdenServicio eOrdenServicio =new EOrdenServicio();
+        eOrdenServicio.setServicio(Constants.servicio);
+        eOrdenServicio.setUsuario(Constants.usuario);
+        eOrdenServicio.setUsuarioDir(Constants.direccion);
+        eOrdenServicio.setUsuarioAuto(Constants.auto);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date fecha = sdf.parse(txtFechaServicio.getText().toString());
             sdf = new SimpleDateFormat("yyyy-MM-dd");
-            eReserva.setFecReserva(sdf.format(fecha));
+            eOrdenServicio.setFecReserva(sdf.format(fecha));
         } catch (ParseException ex) {
             Log.v("Exception", ex.getLocalizedMessage());
         }
 
-        eReserva.setHorReserva(txtHoraServicio.getText().toString());
-        eReserva.setEstado(1);
+        eOrdenServicio.setHorReserva(txtHoraServicio.getText().toString());
+        eOrdenServicio.setEstado(1);
         String formaPago = spFormaPago.getSelectedItem().toString();
         int TipoPago = 0;
         if(formaPago.equals("Efectivo")){
@@ -163,8 +161,18 @@ public class Reserva3Fragment extends Fragment {
         }else{
             TipoPago = 3;
         }
-        eReserva.setFormaPagoID(TipoPago);
-        int respuesta = lavaAutoDAO.registraReserva(eReserva);
+        eOrdenServicio.setFormaPagoID(TipoPago);
+        int respuesta = lavaAutoDAO.registraOrdenSericio(eOrdenServicio);
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String sFechaActual = df.format(calendar.getTime());
+
+        df = new SimpleDateFormat("HH:mm:ss");
+        String sHoraActual = df.format(calendar.getTime());
+
+        lavaAutoDAO.insertarHistorialEstadoOrdenServicio(eOrdenServicio.getOrdenID(), sFechaActual,sHoraActual ,1);
+
         if(respuesta >0){
             Toast.makeText(getActivity(),"Reserva Realizada con Exito", Toast.LENGTH_LONG).show();
             irAServicio();

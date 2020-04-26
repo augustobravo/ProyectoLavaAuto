@@ -43,8 +43,8 @@ public class ContactoFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         googleMap.getUiSettings().setZoomControlsEnabled(true);
         googleMap.setTrafficEnabled(true);
-        //googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        //googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         //googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         //googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
         googleMap.addMarker(new MarkerOptions().position(new LatLng(-12.1445189,-76.9932973)).title("Sede III").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));

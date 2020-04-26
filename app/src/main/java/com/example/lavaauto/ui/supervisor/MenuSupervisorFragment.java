@@ -40,6 +40,16 @@ public class MenuSupervisorFragment extends Fragment {
             }
         });
 
+        btnOpcion2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OrdenServicioFragment fgOrdenServicio = new OrdenServicioFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.nav_host_fragment, fgOrdenServicio);
+                ft.commit();
+            }
+        });
         return view;
     }
 }

@@ -17,14 +17,14 @@ import android.widget.TextView;
 
 import com.example.lavaauto.R;
 import com.example.lavaauto.dao.LavaAutoDAO;
-import com.example.lavaauto.ui.entidad.EReserva;
+import com.example.lavaauto.ui.entidad.EOrdenServicio;
 import com.example.lavaauto.ui.utilitario.Constants;
 
 import java.util.ArrayList;
 
 public class SolicitudServicioFragment extends Fragment {
 
-    private ArrayList<EReserva> listarReserva;
+    private ArrayList<EOrdenServicio> listarReserva;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class SolicitudServicioFragment extends Fragment {
             }
         });
 
-        listarReserva = new LavaAutoDAO().listarReservaRegistradas();
+        listarReserva = new LavaAutoDAO().listarSolicitudesServicio();
 
         AdaptadorServicios adaptador = new AdaptadorServicios(getActivity());
         ListView lvReserva = (ListView) view.findViewById(R.id.idLvReservas);
@@ -57,14 +57,14 @@ public class SolicitudServicioFragment extends Fragment {
         return view;
     }
 
-    class AdaptadorServicios extends ArrayAdapter<EReserva> {
+    class AdaptadorServicios extends ArrayAdapter<EOrdenServicio> {
         AdaptadorServicios(Activity context) {
-            super(context, R.layout.servicios_registrados, listarReserva);
+            super(context, R.layout.solicitudes_registrados, listarReserva);
         }
 
         public View getView(final int position, View convertView, ViewGroup parent) {
 
-            View item = LayoutInflater.from(getContext()).inflate(R.layout.servicios_registrados, null);
+            View item = LayoutInflater.from(getContext()).inflate(R.layout.solicitudes_registrados, null);
 
             TextView txtReservaID = (TextView)item.findViewById(R.id.idTxtReservaID);
             TextView txtClienteServicio = (TextView)item.findViewById(R.id.idTxtClienteServicio);
@@ -73,7 +73,7 @@ public class SolicitudServicioFragment extends Fragment {
             TextView txtHoraReservaServicio = (TextView)item.findViewById(R.id.idTxtHoraReservaServicio);
 
 
-            txtReservaID.setText(String.valueOf(listarReserva.get(position).getReservaID()));
+            txtReservaID.setText(String.valueOf(listarReserva.get(position).getOrdenID()));
             txtClienteServicio.setText(listarReserva.get(position).getUsuario().getNombre());
             txtOrdenServicio.setText(listarReserva.get(position).getServicio().getNombreServicio());
             txtFechaReservaServicio.setText(listarReserva.get(position).getFecReserva());

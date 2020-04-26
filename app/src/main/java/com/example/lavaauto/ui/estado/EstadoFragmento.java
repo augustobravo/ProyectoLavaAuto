@@ -46,20 +46,20 @@ public class EstadoFragmento extends Fragment {
 
     class AdaptadorServicios extends ArrayAdapter<EOrdenServicio> {
       AdaptadorServicios(Activity context) {
-            super(context, R.layout.ordenservicio, listarOrdenServicios);
+            super(context, R.layout.solicitud_servicio, listarOrdenServicios);
        }
 
         public View getView(final int position, View convertView, ViewGroup parent) {
 
-            View item = LayoutInflater.from(getContext()).inflate(R.layout.ordenservicio, null);
+            View item = LayoutInflater.from(getContext()).inflate(R.layout.solicitud_servicio, null);
             TextView txtordenservicio = (TextView)item.findViewById(R.id.idTxtOrdenServicio);
             TextView txtusuarioID = (TextView)item.findViewById(R.id.idTxtUsuario);
            // TextView txtservicio = (TextView) item.findViewById(R.id.idTxtServicio);
             TextView txtfecha = (TextView)item.findViewById(R.id.idTxtfecha);
             TextView txtestado = (TextView)item.findViewById(R.id.idTxtestado);
 
-            txtordenservicio.setText(String.valueOf(listarOrdenServicios.get(position).getReservaID()));
-            txtusuarioID.setText(Integer.toString(listarOrdenServicios.get(position).getUsuarioID()));
+            txtordenservicio.setText(String.valueOf(listarOrdenServicios.get(position).getOrdenID()));
+            //txtusuarioID.setText(Integer.toString(listarOrdenServicios.get(position).getUsuarioID()));
             //txtservicio.setText(Integer.toString(listarOrdenServicios.get(position).getServicioID()));
             txtfecha.setText(listarOrdenServicios.get(position).getFecReserva());
             txtestado.setText(Integer.toString(listarOrdenServicios.get(position).getEstado()));

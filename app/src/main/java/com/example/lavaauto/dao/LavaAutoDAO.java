@@ -6,7 +6,6 @@ import android.util.Log;
 import com.example.lavaauto.ui.entidad.EAuto;
 import com.example.lavaauto.ui.entidad.EDireccion;
 import com.example.lavaauto.ui.entidad.EOrdenServicio;
-import com.example.lavaauto.ui.entidad.EReserva;
 import com.example.lavaauto.ui.entidad.EServicio;
 import com.example.lavaauto.ui.entidad.EUsuario;
 
@@ -19,7 +18,6 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LavaAutoDAO {
 
@@ -161,19 +159,19 @@ public class LavaAutoDAO {
         return dirrecciones;
     }
 
-    public int registraReserva(EReserva eReserva){
+    public int registraOrdenSericio(EOrdenServicio eOrdenServicio){
         int filas = 0;
         try {
-            String sql ="insert into RESERVA values (?,?,?,?,?,?,?,?)";
+            String sql ="insert into ORDENSERVICIO values (?,?,?,?,?,?,?,?)";
             PreparedStatement pst= conectarBD().prepareStatement(sql);
-            pst.setInt(1, eReserva.getServicio().getServicioID());
-            pst.setInt(2, eReserva.getUsuario().getUsuarioID());
-            pst.setInt(3, eReserva.getUsuarioAuto().getUsuarioAutoID());
-            pst.setInt(4, eReserva.getUsuarioDir().getUsuarioDirID());
-            pst.setString(5,eReserva.getFecReserva());
-            pst.setString(6,eReserva.getHorReserva());
-            pst.setInt(7, eReserva.getEstado());
-            pst.setInt(8,eReserva.getFormaPagoID());
+            pst.setInt(1, eOrdenServicio.getServicio().getServicioID());
+            pst.setInt(2, eOrdenServicio.getUsuario().getUsuarioID());
+            pst.setInt(3, eOrdenServicio.getUsuarioAuto().getUsuarioAutoID());
+            pst.setInt(4, eOrdenServicio.getUsuarioDir().getUsuarioDirID());
+            pst.setString(5, eOrdenServicio.getFecReserva());
+            pst.setString(6, eOrdenServicio.getHorReserva());
+            pst.setInt(7, eOrdenServicio.getEstado());
+            pst.setInt(8, eOrdenServicio.getFormaPagoID());
 
             filas = pst.executeUpdate();
 
@@ -187,20 +185,45 @@ public class LavaAutoDAO {
         ArrayList<EOrdenServicio> ordenServicios = new ArrayList<EOrdenServicio>();
         try {
             Statement st = conectarBD().createStatement();
-            String sql = "select ReservaID, UsuarioID, FecReserva, Estado from RESERVA where UsuarioID = "+ UsuarioID;
+            String sql = "SELECT A.OrdenID, A.ServicioID, B.Descripcion, B.Precio, A.UsuarioID,\n" +
+                    "       C.Docume, C.Nombre, A.UsuarioDirID, D.Direccion, D.Distrito, A.UsuarioAutoID,\n" +
+                    "       E.Placa, E.Modelo, E.Marca, A.FecReserva, A.HorReserva, A.Estado, A.FormaPagoID \n" +
+                    "FROM [dbo].[ORDENSERVICIO] A\n" +
+                    "    INNER JOIN [dbo].[SERVICIO] B ON A.ServicioID = B.ServicioID\n" +
+                    "    INNER JOIN [dbo].[USUARIO] C ON A.UsuarioID = C.UsuarioID\n" +
+                    "    INNER JOIN [dbo].[USUARIODIRECCION] D ON A.UsuarioDirID = D.UsuarioDirID\n" +
+                    "    INNER JOIN [dbo].[USUARIOAUTO] E ON A.UsuarioAutoID = E.UsuarioAutoID WHERE A.UsuarioID = " + UsuarioID;
             ResultSet rs = st.executeQuery(sql);
 
             while (rs.next()){
-                EOrdenServicio EordenServicio = new EOrdenServicio();
-                EordenServicio.setReservaID(rs.getInt("ReservaID"));
-                EordenServicio.setUsuarioID(rs.getInt("UsuarioID"));
-                DateFormat dateFormat1 = new SimpleDateFormat("dd/MM/yyyy");
-                String strdate1 = dateFormat1.format(rs.getDate("FecReserva"));
-                EordenServicio.setFecReserva(strdate1);
-                //String strDate = dateFormat.format(rs.getDate("FecReserva"));
-                //eReserva.setFecReserva(strDate);
-                EordenServicio.setEstado(rs.getInt("Estado"));
-                ordenServicios.add(EordenServicio);
+                EOrdenServicio eOrdenServicio = new EOrdenServicio();
+                eOrdenServicio.setOrdenID(rs.getInt("OrdenID"));
+                eOrdenServicio.setServicio(new EServicio());
+                eOrdenServicio.getServicio().setServicioID(rs.getInt("ServicioID"));
+                eOrdenServicio.getServicio().setNombreServicio(rs.getString("Descripcion"));
+                eOrdenServicio.getServicio().setPrecio(rs.getDouble("Precio"));
+                eOrdenServicio.setUsuario(new EUsuario());
+                eOrdenServicio.getUsuario().setUsuarioID(rs.getInt("UsuarioID"));
+                eOrdenServicio.getUsuario().setDocume(rs.getString("Docume"));
+                eOrdenServicio.getUsuario().setNombre(rs.getString("Nombre"));
+                eOrdenServicio.setUsuarioDir(new EDireccion());
+                eOrdenServicio.getUsuarioDir().setUsuarioDirID(rs.getInt("UsuarioDirID"));
+                eOrdenServicio.getUsuarioDir().setDomicilio(rs.getString("Direccion"));
+                eOrdenServicio.getUsuarioDir().setDistrito(rs.getString("Distrito"));
+                eOrdenServicio.setUsuarioAuto(new EAuto());
+                eOrdenServicio.getUsuarioAuto().setUsuarioAutoID(rs.getInt("UsuarioAutoID"));
+                eOrdenServicio.getUsuarioAuto().setPlaca(rs.getString("Placa"));
+                eOrdenServicio.getUsuarioAuto().setModelo(rs.getString("Modelo"));
+                eOrdenServicio.getUsuarioAuto().setMarca(rs.getString("Marca"));
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String strDate = dateFormat.format(rs.getDate("FecReserva"));
+                eOrdenServicio.setFecReserva(strDate);
+                dateFormat = new SimpleDateFormat("HH:mm");
+                String strTime = dateFormat.format(rs.getTime("HorReserva"));
+                eOrdenServicio.setHorReserva(strTime);
+                eOrdenServicio.setEstado(rs.getInt("Estado"));
+                eOrdenServicio.setFormaPagoID(rs.getInt("FormaPagoID"));
+                ordenServicios.add(eOrdenServicio);
             }
         }catch (SQLException ex) {
             Log.i("obtenerOS==> ", ex.getMessage());
@@ -208,14 +231,14 @@ public class LavaAutoDAO {
         return ordenServicios;
     }
 
-    public ArrayList<EReserva> listarReservaRegistradas(){
-        ArrayList<EReserva> reservas = new ArrayList<EReserva>();
+    public ArrayList<EOrdenServicio> listarSolicitudesServicio(){
+        ArrayList<EOrdenServicio> reservas = new ArrayList<EOrdenServicio>();
         try {
             Statement st = conectarBD().createStatement();
-            String sql = "SELECT A.ReservaID, A.ServicioID, B.Descripcion, B.Precio, A.UsuarioID,\n" +
+            String sql = "SELECT A.OrdenID, A.ServicioID, B.Descripcion, B.Precio, A.UsuarioID,\n" +
                     "       C.Docume, C.Nombre, A.UsuarioDirID, D.Direccion, D.Distrito, A.UsuarioAutoID,\n" +
                     "       E.Placa, E.Modelo, E.Marca, A.FecReserva, A.HorReserva, A.Estado, A.FormaPagoID \n" +
-                    "FROM [dbo].[RESERVA] A\n" +
+                    "FROM [dbo].[ORDENSERVICIO] A\n" +
                     "    INNER JOIN [dbo].[SERVICIO] B ON A.ServicioID = B.ServicioID\n" +
                     "    INNER JOIN [dbo].[USUARIO] C ON A.UsuarioID = C.UsuarioID\n" +
                     "    INNER JOIN [dbo].[USUARIODIRECCION] D ON A.UsuarioDirID = D.UsuarioDirID\n" +
@@ -223,35 +246,35 @@ public class LavaAutoDAO {
             ResultSet rs = st.executeQuery(sql);
 
             while (rs.next()){
-                EReserva eReserva = new EReserva();
-                eReserva.setReservaID(rs.getInt("ReservaID"));
-                eReserva.setServicio(new EServicio());
-                eReserva.getServicio().setServicioID(rs.getInt("ServicioID"));
-                eReserva.getServicio().setNombreServicio(rs.getString("Descripcion"));
-                eReserva.getServicio().setPrecio(rs.getDouble("Precio"));
-                eReserva.setUsuario(new EUsuario());
-                eReserva.getUsuario().setUsuarioID(rs.getInt("UsuarioID"));
-                eReserva.getUsuario().setDocume(rs.getString("Docume"));
-                eReserva.getUsuario().setNombre(rs.getString("Nombre"));
-                eReserva.setUsuarioDir(new EDireccion());
-                eReserva.getUsuarioDir().setUsuarioDirID(rs.getInt("UsuarioDirID"));
-                eReserva.getUsuarioDir().setDomicilio(rs.getString("Direccion"));
-                eReserva.getUsuarioDir().setDistrito(rs.getString("Distrito"));
-                eReserva.setUsuarioAuto(new EAuto());
-                eReserva.getUsuarioAuto().setUsuarioAutoID(rs.getInt("UsuarioAutoID"));
-                eReserva.getUsuarioAuto().setPlaca(rs.getString("Placa"));
-                eReserva.getUsuarioAuto().setModelo(rs.getString("Modelo"));
-                eReserva.getUsuarioAuto().setMarca(rs.getString("Marca"));
+                EOrdenServicio eOrdenServicio = new EOrdenServicio();
+                eOrdenServicio.setOrdenID(rs.getInt("OrdenID"));
+                eOrdenServicio.setServicio(new EServicio());
+                eOrdenServicio.getServicio().setServicioID(rs.getInt("ServicioID"));
+                eOrdenServicio.getServicio().setNombreServicio(rs.getString("Descripcion"));
+                eOrdenServicio.getServicio().setPrecio(rs.getDouble("Precio"));
+                eOrdenServicio.setUsuario(new EUsuario());
+                eOrdenServicio.getUsuario().setUsuarioID(rs.getInt("UsuarioID"));
+                eOrdenServicio.getUsuario().setDocume(rs.getString("Docume"));
+                eOrdenServicio.getUsuario().setNombre(rs.getString("Nombre"));
+                eOrdenServicio.setUsuarioDir(new EDireccion());
+                eOrdenServicio.getUsuarioDir().setUsuarioDirID(rs.getInt("UsuarioDirID"));
+                eOrdenServicio.getUsuarioDir().setDomicilio(rs.getString("Direccion"));
+                eOrdenServicio.getUsuarioDir().setDistrito(rs.getString("Distrito"));
+                eOrdenServicio.setUsuarioAuto(new EAuto());
+                eOrdenServicio.getUsuarioAuto().setUsuarioAutoID(rs.getInt("UsuarioAutoID"));
+                eOrdenServicio.getUsuarioAuto().setPlaca(rs.getString("Placa"));
+                eOrdenServicio.getUsuarioAuto().setModelo(rs.getString("Modelo"));
+                eOrdenServicio.getUsuarioAuto().setMarca(rs.getString("Marca"));
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 String strDate = dateFormat.format(rs.getDate("FecReserva"));
-                eReserva.setFecReserva(strDate);
+                eOrdenServicio.setFecReserva(strDate);
                 dateFormat = new SimpleDateFormat("HH:mm");
                 String strTime = dateFormat.format(rs.getTime("HorReserva"));
-                eReserva.setHorReserva(strTime);
-                eReserva.setEstado(rs.getInt("Estado"));
-                eReserva.setFormaPagoID(rs.getInt("FormaPagoID"));
+                eOrdenServicio.setHorReserva(strTime);
+                eOrdenServicio.setEstado(rs.getInt("Estado"));
+                eOrdenServicio.setFormaPagoID(rs.getInt("FormaPagoID"));
 
-                reservas.add(eReserva);
+                reservas.add(eOrdenServicio);
             }
         }catch (SQLException ex) {
             Log.i("listarReserva==> ", ex.getMessage());
@@ -259,13 +282,64 @@ public class LavaAutoDAO {
         return reservas;
     }
 
-    public int actualizarEstadoReserva(int ReservaID, int EstadoID){
+    public ArrayList<EOrdenServicio> listarOrdenServicios(){
+        ArrayList<EOrdenServicio> reservas = new ArrayList<EOrdenServicio>();
+        try {
+            Statement st = conectarBD().createStatement();
+            String sql = "SELECT A.OrdenID, A.ServicioID, B.Descripcion, B.Precio, A.UsuarioID,\n" +
+                    "       C.Docume, C.Nombre, A.UsuarioDirID, D.Direccion, D.Distrito, A.UsuarioAutoID,\n" +
+                    "       E.Placa, E.Modelo, E.Marca, A.FecReserva, A.HorReserva, A.Estado, A.FormaPagoID \n" +
+                    "FROM [dbo].[ORDENSERVICIO] A\n" +
+                    "    INNER JOIN [dbo].[SERVICIO] B ON A.ServicioID = B.ServicioID\n" +
+                    "    INNER JOIN [dbo].[USUARIO] C ON A.UsuarioID = C.UsuarioID\n" +
+                    "    INNER JOIN [dbo].[USUARIODIRECCION] D ON A.UsuarioDirID = D.UsuarioDirID\n" +
+                    "    INNER JOIN [dbo].[USUARIOAUTO] E ON A.UsuarioAutoID = E.UsuarioAutoID WHERE A.Estado > 1";
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()){
+                EOrdenServicio eOrdenServicio = new EOrdenServicio();
+                eOrdenServicio.setOrdenID(rs.getInt("OrdenID"));
+                eOrdenServicio.setServicio(new EServicio());
+                eOrdenServicio.getServicio().setServicioID(rs.getInt("ServicioID"));
+                eOrdenServicio.getServicio().setNombreServicio(rs.getString("Descripcion"));
+                eOrdenServicio.getServicio().setPrecio(rs.getDouble("Precio"));
+                eOrdenServicio.setUsuario(new EUsuario());
+                eOrdenServicio.getUsuario().setUsuarioID(rs.getInt("UsuarioID"));
+                eOrdenServicio.getUsuario().setDocume(rs.getString("Docume"));
+                eOrdenServicio.getUsuario().setNombre(rs.getString("Nombre"));
+                eOrdenServicio.setUsuarioDir(new EDireccion());
+                eOrdenServicio.getUsuarioDir().setUsuarioDirID(rs.getInt("UsuarioDirID"));
+                eOrdenServicio.getUsuarioDir().setDomicilio(rs.getString("Direccion"));
+                eOrdenServicio.getUsuarioDir().setDistrito(rs.getString("Distrito"));
+                eOrdenServicio.setUsuarioAuto(new EAuto());
+                eOrdenServicio.getUsuarioAuto().setUsuarioAutoID(rs.getInt("UsuarioAutoID"));
+                eOrdenServicio.getUsuarioAuto().setPlaca(rs.getString("Placa"));
+                eOrdenServicio.getUsuarioAuto().setModelo(rs.getString("Modelo"));
+                eOrdenServicio.getUsuarioAuto().setMarca(rs.getString("Marca"));
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String strDate = dateFormat.format(rs.getDate("FecReserva"));
+                eOrdenServicio.setFecReserva(strDate);
+                dateFormat = new SimpleDateFormat("HH:mm");
+                String strTime = dateFormat.format(rs.getTime("HorReserva"));
+                eOrdenServicio.setHorReserva(strTime);
+                eOrdenServicio.setEstado(rs.getInt("Estado"));
+                eOrdenServicio.setFormaPagoID(rs.getInt("FormaPagoID"));
+
+                reservas.add(eOrdenServicio);
+            }
+        }catch (SQLException ex) {
+            Log.i("listarReserva==> ", ex.getMessage());
+        }
+        return reservas;
+    }
+
+    public int actualizarEstadoOrdenServicio(int OrdenID, int EstadoID){
         int filas = 0;
         try {
-            String sql ="Update RESERVA set Estado = ? where ReservaID = ? ";
+            String sql ="Update ORDENSERVICIO set Estado = ? where OrdenID = ? ";
             PreparedStatement pst= conectarBD().prepareStatement(sql);
             pst.setInt(1, EstadoID);
-            pst.setInt(2, ReservaID);
+            pst.setInt(2, OrdenID);
             filas = pst.executeUpdate();
 
         }catch (SQLException ex){
@@ -274,14 +348,32 @@ public class LavaAutoDAO {
         return filas;
     }
 
-    public int reprogramarReserva(int ReservaID, String Fecha , String Hora){
+    public int insertarHistorialEstadoOrdenServicio(int OrdenID, String Fecha , String Hora, int EstadoID){
         int filas = 0;
         try {
-            String sql ="Update RESERVA set FecReserva = ? , HorReserva = ? where ReservaID = ? ";
+            String sql ="insert into DETALLEORDENSERVICIO values (?,?,?,?)";
+            PreparedStatement pst= conectarBD().prepareStatement(sql);
+            pst.setInt(1, OrdenID);
+            pst.setString(2, Fecha);
+            pst.setString(3, Hora);
+            pst.setInt(4, EstadoID);
+
+            filas = pst.executeUpdate();
+
+        }catch (SQLException ex){
+            Log.i("actualizarEstadoRes==> ", ex.getMessage());
+        }
+        return filas;
+    }
+
+    public int reprogramarOrdenServicio(int OrdenID, String Fecha , String Hora){
+        int filas = 0;
+        try {
+            String sql ="Update ORDENSERVICIO set FecReserva = ? , HorReserva = ? where OrdenID = ? ";
             PreparedStatement pst= conectarBD().prepareStatement(sql);
             pst.setString(1, Fecha);
             pst.setString(2, Hora);
-            pst.setInt(3, ReservaID);
+            pst.setInt(3, OrdenID);
             filas = pst.executeUpdate();
 
         }catch (SQLException ex){

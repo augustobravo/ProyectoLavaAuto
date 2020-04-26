@@ -19,7 +19,7 @@
                 android:id="@+id/textView29"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="DETALLE DE LA RESERVA"
+                android:text="DETALLE DE LA SOLICITUD DE SERVICIO"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="18sp"

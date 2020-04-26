@@ -15,13 +15,16 @@ import android.widget.Toast;
 
 import com.example.lavaauto.R;
 import com.example.lavaauto.dao.LavaAutoDAO;
-import com.example.lavaauto.ui.entidad.EReserva;
+import com.example.lavaauto.ui.entidad.EOrdenServicio;
 import com.example.lavaauto.ui.utilitario.Constants;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class SolicitudServicioDetalleFragment extends Fragment {
 
     private LavaAutoDAO lavaAutoDAO;
-    private EReserva eReserva;
+    private EOrdenServicio eOrdenServicio;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,18 +47,18 @@ public class SolicitudServicioDetalleFragment extends Fragment {
         TextView lblFecha = (TextView) view.findViewById(R.id.textView55);
         TextView lblHora = (TextView) view.findViewById(R.id.textView57);
         TextView lblFormaPago = (TextView) view.findViewById(R.id.textView60);
-        eReserva = Constants.reserva;
+        eOrdenServicio = Constants.reserva;
 
-        lblDocumento.setText(eReserva.getUsuario().getDocume());
-        lblNombres.setText(eReserva.getUsuario().getNombre());
-        lblTipoServicio.setText(eReserva.getServicio().getNombreServicio());
-        lblDireccion.setText(eReserva.getUsuarioDir().getDomicilio().trim() +" - " + eReserva.getUsuarioDir().getDistrito());
-        lblAutomovil.setText(eReserva.getUsuarioAuto().getPlaca().trim() +" - " + eReserva.getUsuarioAuto().getModelo().trim() +" - " + eReserva.getUsuarioAuto().getMarca().trim());
-        lblFecha.setText(eReserva.getFecReserva());
-        lblHora.setText(eReserva.getHorReserva());
-        if(eReserva.getFormaPagoID() == 1){
+        lblDocumento.setText(eOrdenServicio.getUsuario().getDocume());
+        lblNombres.setText(eOrdenServicio.getUsuario().getNombre());
+        lblTipoServicio.setText(eOrdenServicio.getServicio().getNombreServicio());
+        lblDireccion.setText(eOrdenServicio.getUsuarioDir().getDomicilio().trim() +" - " + eOrdenServicio.getUsuarioDir().getDistrito());
+        lblAutomovil.setText(eOrdenServicio.getUsuarioAuto().getPlaca().trim() +" - " + eOrdenServicio.getUsuarioAuto().getModelo().trim() +" - " + eOrdenServicio.getUsuarioAuto().getMarca().trim());
+        lblFecha.setText(eOrdenServicio.getFecReserva());
+        lblHora.setText(eOrdenServicio.getHorReserva());
+        if(eOrdenServicio.getFormaPagoID() == 1){
             lblFormaPago.setText("Efectivo");
-        }else if(eReserva.getFormaPagoID() == 2){
+        }else if(eOrdenServicio.getFormaPagoID() == 2){
             lblFormaPago.setText("Tarjeta de crédito");
         }else{
             lblFormaPago.setText("Transferencia electrónica");
@@ -76,7 +79,16 @@ public class SolicitudServicioDetalleFragment extends Fragment {
         btnRechazar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lavaAutoDAO.actualizarEstadoReserva(eReserva.getReservaID(), 3);
+                lavaAutoDAO.actualizarEstadoOrdenServicio(eOrdenServicio.getOrdenID(), 0);
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                String sFechaActual = df.format(calendar.getTime());
+
+                df = new SimpleDateFormat("HH:mm:ss");
+                String sHoraActual = df.format(calendar.getTime());
+
+                lavaAutoDAO.insertarHistorialEstadoOrdenServicio(eOrdenServicio.getOrdenID(), sFechaActual,sHoraActual ,0);
+
                 Toast.makeText(getActivity(),"Reserva Rechazada", Toast.LENGTH_LONG).show();
                 irASupervisor();
             }
@@ -85,7 +97,16 @@ public class SolicitudServicioDetalleFragment extends Fragment {
        btnEnviarOrden.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               lavaAutoDAO.actualizarEstadoReserva(eReserva.getReservaID(), 2);
+               lavaAutoDAO.actualizarEstadoOrdenServicio(eOrdenServicio.getOrdenID(), 2);
+               Calendar calendar = Calendar.getInstance();
+               SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+               String sFechaActual = df.format(calendar.getTime());
+
+               df = new SimpleDateFormat("HH:mm:ss");
+               String sHoraActual = df.format(calendar.getTime());
+
+               lavaAutoDAO.insertarHistorialEstadoOrdenServicio(eOrdenServicio.getOrdenID(), sFechaActual,sHoraActual ,2);
+
                Toast.makeText(getActivity(),"Orden de Servicio Enviada", Toast.LENGTH_LONG).show();
                irASupervisor();
            }
