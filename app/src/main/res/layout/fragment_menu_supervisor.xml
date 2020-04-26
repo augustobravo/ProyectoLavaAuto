@@ -78,7 +78,7 @@
                     android:id="@+id/textView33"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="MANTENIMIENTO DE TABLAS"
+                    android:text="MANTENIMIENTO DE SERVICIO"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
