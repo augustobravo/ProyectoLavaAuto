@@ -7,8 +7,17 @@ public class EOrdenServicio {
     private int ReservaID;
     private int ServicioID;
     private int UsuarioID;
-    private Date FecReserva;
+    private String FecReserva;
     private int Estado;
+
+    public String getFecReserva() {
+        return FecReserva;
+    }
+
+    public void setFecReserva(String fecReserva) {
+        FecReserva = fecReserva;
+    }
+
 
     public int getServicioID() {
         return ServicioID;
@@ -34,13 +43,7 @@ public class EOrdenServicio {
         UsuarioID = usuarioID;
     }
 
-    public Date getFecReserva() {
-        return FecReserva;
-    }
 
-    public void setFecReserva(Date fecReserva) {
-        FecReserva = fecReserva;
-    }
 
     public int getEstado() {
         return Estado;

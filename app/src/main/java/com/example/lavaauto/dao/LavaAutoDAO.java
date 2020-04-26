@@ -194,7 +194,11 @@ public class LavaAutoDAO {
                 EOrdenServicio EordenServicio = new EOrdenServicio();
                 EordenServicio.setReservaID(rs.getInt("ReservaID"));
                 EordenServicio.setUsuarioID(rs.getInt("UsuarioID"));
-                EordenServicio.setFecReserva(rs.getDate("FecReserva"));
+                DateFormat dateFormat1 = new SimpleDateFormat("dd/MM/yyyy");
+                String strdate1 = dateFormat1.format(rs.getDate("FecReserva"));
+                EordenServicio.setFecReserva(strdate1);
+                //String strDate = dateFormat.format(rs.getDate("FecReserva"));
+                //eReserva.setFecReserva(strDate);
                 EordenServicio.setEstado(rs.getInt("Estado"));
                 ordenServicios.add(EordenServicio);
             }
