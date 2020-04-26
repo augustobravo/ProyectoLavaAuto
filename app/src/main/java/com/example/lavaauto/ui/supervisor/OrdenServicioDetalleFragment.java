@@ -104,7 +104,7 @@ public class OrdenServicioDetalleFragment extends Fragment {
 
     private void irASupervisor()
     {
-        SupervisorFragment fgSupervisor = new SupervisorFragment();
+        OrdenServicioFragment fgSupervisor = new OrdenServicioFragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.nav_host_fragment, fgSupervisor);
