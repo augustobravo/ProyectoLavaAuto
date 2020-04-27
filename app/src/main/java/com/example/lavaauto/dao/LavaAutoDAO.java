@@ -520,4 +520,28 @@ public class LavaAutoDAO {
         }
         return OrdenIDMaximo;
     }
+
+    public ArrayList<EOrdenServicio> UsuarioxOrden(int UsuarioID){
+        ArrayList<EOrdenServicio> User = new ArrayList<EOrdenServicio>();
+        try {
+            Statement st = conectarBD().createStatement();
+            String sql = "SELECT U.UsuarioID, U.Nombre , R.ReservaID, R.FecReserva, R.Estado\n" +
+                    "FROM [dbo].[USUARIO] U JOIN [dbo].[RESERVA] R ON U.UsuarioID = R.UsuarioID\n" +
+                    "WHERE U.UsuarioID =" + UsuarioID;;
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()){
+                EOrdenServicio datos = new EOrdenServicio();
+
+                datos.setOrdenID(rs.getInt("ReservaID"));
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String strDate = dateFormat.format(rs.getDate("FecReserva"));
+                datos.setFecReserva(strDate);
+                datos.setEstado(rs.getInt("Estado"));
+            }
+        }catch (SQLException ex) {
+            Log.i("ObtUsuarioOrd==> ", ex.getMessage());
+        }
+        return User;
+    }
+
 }
