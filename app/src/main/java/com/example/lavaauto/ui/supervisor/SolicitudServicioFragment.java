@@ -83,7 +83,7 @@ public class SolicitudServicioFragment extends Fragment {
             btnDetale.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Constants.reserva = listarReserva.get(position);
+                    Constants.ordenServicio = listarReserva.get(position);
                     SolicitudServicioDetalleFragment fgSupervisorDetalle = new SolicitudServicioDetalleFragment();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction ft = fragmentManager.beginTransaction();

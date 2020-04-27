@@ -4,6 +4,7 @@ import android.os.StrictMode;
 import android.util.Log;
 
 import com.example.lavaauto.ui.entidad.EAuto;
+import com.example.lavaauto.ui.entidad.EDetalleOrdenServicio;
 import com.example.lavaauto.ui.entidad.EDireccion;
 import com.example.lavaauto.ui.entidad.EOrdenServicio;
 import com.example.lavaauto.ui.entidad.EServicio;
@@ -181,18 +182,44 @@ public class LavaAutoDAO {
         return filas;
     }
 
-    public ArrayList<EOrdenServicio> obtenerOrdenesServicio(int UsuarioID){
+    public EDetalleOrdenServicio obtenerFechaMaximaOrdenServicio(int OrdenID){
+        EDetalleOrdenServicio detalleOrdenServicio = null;
+
+        try {
+            Statement st = conectarBD().createStatement();
+
+            String sql = "Select MAX(FechaRegistro) as Fecha, MAX(HoraRegistro) As Hora from [dbo].[DETALLEORDENSERVICIO] Where OrdenID = " +  OrdenID ;
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()){
+                detalleOrdenServicio = new EDetalleOrdenServicio();
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String strDate = dateFormat.format(rs.getDate("Fecha"));
+                detalleOrdenServicio.setFechaRegistro(strDate);
+                dateFormat = new SimpleDateFormat("HH:mm");
+                String strTime = dateFormat.format(rs.getTime("Hora"));
+                detalleOrdenServicio.setHoraRegistro(strTime);
+            }
+        }catch (SQLException ex) {
+            Log.i("obtenerOS==> ", ex.getMessage());
+        }
+            return detalleOrdenServicio;
+        }
+
+    public ArrayList<EOrdenServicio> obtenerOrdenesServicioCliente(int UsuarioID){
         ArrayList<EOrdenServicio> ordenServicios = new ArrayList<EOrdenServicio>();
         try {
             Statement st = conectarBD().createStatement();
             String sql = "SELECT A.OrdenID, A.ServicioID, B.Descripcion, B.Precio, A.UsuarioID,\n" +
                     "       C.Docume, C.Nombre, A.UsuarioDirID, D.Direccion, D.Distrito, A.UsuarioAutoID,\n" +
-                    "       E.Placa, E.Modelo, E.Marca, A.FecReserva, A.HorReserva, A.Estado, A.FormaPagoID \n" +
+                    "       E.Placa, E.Modelo, E.Marca, \n" +
+                    "       A.Estado, A.FormaPagoID\n" +
                     "FROM [dbo].[ORDENSERVICIO] A\n" +
                     "    INNER JOIN [dbo].[SERVICIO] B ON A.ServicioID = B.ServicioID\n" +
                     "    INNER JOIN [dbo].[USUARIO] C ON A.UsuarioID = C.UsuarioID\n" +
                     "    INNER JOIN [dbo].[USUARIODIRECCION] D ON A.UsuarioDirID = D.UsuarioDirID\n" +
-                    "    INNER JOIN [dbo].[USUARIOAUTO] E ON A.UsuarioAutoID = E.UsuarioAutoID WHERE A.UsuarioID = " + UsuarioID;
+                    "    INNER JOIN [dbo].[USUARIOAUTO] E ON A.UsuarioAutoID = E.UsuarioAutoID \n" +
+                    "WHERE A.UsuarioID = " + UsuarioID;
             ResultSet rs = st.executeQuery(sql);
 
             while (rs.next()){
@@ -215,13 +242,34 @@ public class LavaAutoDAO {
                 eOrdenServicio.getUsuarioAuto().setPlaca(rs.getString("Placa"));
                 eOrdenServicio.getUsuarioAuto().setModelo(rs.getString("Modelo"));
                 eOrdenServicio.getUsuarioAuto().setMarca(rs.getString("Marca"));
-                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                String strDate = dateFormat.format(rs.getDate("FecReserva"));
-                eOrdenServicio.setFecReserva(strDate);
-                dateFormat = new SimpleDateFormat("HH:mm");
-                String strTime = dateFormat.format(rs.getTime("HorReserva"));
-                eOrdenServicio.setHorReserva(strTime);
+
+                EDetalleOrdenServicio detalleOrdenServicio = obtenerFechaMaximaOrdenServicio(eOrdenServicio.getOrdenID());
+                eOrdenServicio.setFecReserva(detalleOrdenServicio.getFechaRegistro());
+                eOrdenServicio.setHorReserva(detalleOrdenServicio.getHoraRegistro());
                 eOrdenServicio.setEstado(rs.getInt("Estado"));
+                switch (eOrdenServicio.getEstado()){
+                    case 0:
+                        eOrdenServicio.setDesEstado("RECHAZADO");
+                        break;
+                    case 1:
+                        eOrdenServicio.setDesEstado("REGISTRADO");
+                        break;
+                    case 2:
+                        eOrdenServicio.setDesEstado("APROBADA");
+                        break;
+                    case 3:
+                        eOrdenServicio.setDesEstado("INICIADO");
+                        break;
+                    case 4:
+                        eOrdenServicio.setDesEstado("LAVADO");
+                        break;
+                    case 5:
+                        eOrdenServicio.setDesEstado("ENCERADO");
+                        break;
+                    case 6:
+                        eOrdenServicio.setDesEstado("CONCLUIDO");
+                        break;
+                }
                 eOrdenServicio.setFormaPagoID(rs.getInt("FormaPagoID"));
                 ordenServicios.add(eOrdenServicio);
             }
@@ -287,9 +335,9 @@ public class LavaAutoDAO {
         try {
             Statement st = conectarBD().createStatement();
             String sql = "SELECT A.OrdenID, A.ServicioID, B.Descripcion, B.Precio, A.UsuarioID,\n" +
-                    "       C.Docume, C.Nombre, A.UsuarioDirID, D.Direccion, D.Distrito, A.UsuarioAutoID,\n" +
-                    "       E.Placa, E.Modelo, E.Marca, A.FecReserva, A.HorReserva, A.Estado, A.FormaPagoID \n" +
-                    "FROM [dbo].[ORDENSERVICIO] A\n" +
+                    " C.Docume, C.Nombre, A.UsuarioDirID, D.Direccion, D.Distrito, A.UsuarioAutoID,\n" +
+                    " E.Placa, E.Modelo, E.Marca, A.FecReserva, A.HorReserva, A.Estado, A.FormaPagoID \n" +
+                    "  FROM [dbo].[ORDENSERVICIO] A\n" +
                     "    INNER JOIN [dbo].[SERVICIO] B ON A.ServicioID = B.ServicioID\n" +
                     "    INNER JOIN [dbo].[USUARIO] C ON A.UsuarioID = C.UsuarioID\n" +
                     "    INNER JOIN [dbo].[USUARIODIRECCION] D ON A.UsuarioDirID = D.UsuarioDirID\n" +
@@ -323,6 +371,30 @@ public class LavaAutoDAO {
                 String strTime = dateFormat.format(rs.getTime("HorReserva"));
                 eOrdenServicio.setHorReserva(strTime);
                 eOrdenServicio.setEstado(rs.getInt("Estado"));
+
+                switch (eOrdenServicio.getEstado()){
+                    case 0:
+                        eOrdenServicio.setDesEstado("RECHAZADO");
+                        break;
+                    case 1:
+                        eOrdenServicio.setDesEstado("REGISTRADO");
+                        break;
+                    case 2:
+                        eOrdenServicio.setDesEstado("APROBADA");
+                        break;
+                    case 3:
+                        eOrdenServicio.setDesEstado("INICIADO");
+                        break;
+                    case 4:
+                        eOrdenServicio.setDesEstado("LAVADO");
+                        break;
+                    case 5:
+                        eOrdenServicio.setDesEstado("ENCERADO");
+                        break;
+                    case 6:
+                        eOrdenServicio.setDesEstado("CONCLUIDO");
+                        break;
+                }
                 eOrdenServicio.setFormaPagoID(rs.getInt("FormaPagoID"));
 
                 reservas.add(eOrdenServicio);
@@ -331,6 +403,58 @@ public class LavaAutoDAO {
             Log.i("listarReserva==> ", ex.getMessage());
         }
         return reservas;
+    }
+
+    public ArrayList<EDetalleOrdenServicio> listarDetalleOrdenServicios(int OrdenID){
+        ArrayList<EDetalleOrdenServicio> detalleOrdenServicios = new ArrayList<EDetalleOrdenServicio>();
+        try {
+            Statement st = conectarBD().createStatement();
+            String sql = "SELECT OrdenID, OrdenDetalleID, FechaRegistro, HoraRegistro, EstadoServicio from DETALLEORDENSERVICIO Where OrdenID = " + OrdenID;
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()){
+                EDetalleOrdenServicio eDetalleOrdenServicio = new EDetalleOrdenServicio();
+                eDetalleOrdenServicio.setOrdenID(rs.getInt("OrdenID"));
+                eDetalleOrdenServicio.setOrdenDetalleID(rs.getInt("OrdenDetalleID"));
+
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String strDate = dateFormat.format(rs.getDate("FechaRegistro"));
+                eDetalleOrdenServicio.setFechaRegistro(strDate);
+                dateFormat = new SimpleDateFormat("HH:mm");
+                String strTime = dateFormat.format(rs.getTime("HoraRegistro"));
+                eDetalleOrdenServicio.setHoraRegistro(strTime);
+                eDetalleOrdenServicio.setEstadoID(rs.getInt("EstadoServicio"));
+
+                switch (eDetalleOrdenServicio.getEstadoID()){
+                    case 0:
+                        eDetalleOrdenServicio.setDescripcionEstado("RECHAZADO");
+                        break;
+                    case 1:
+                        eDetalleOrdenServicio.setDescripcionEstado("REGISTRADO");
+                        break;
+                    case 2:
+                        eDetalleOrdenServicio.setDescripcionEstado("APROBADA");
+                        break;
+                    case 3:
+                        eDetalleOrdenServicio.setDescripcionEstado("INICIADO");
+                        break;
+                    case 4:
+                        eDetalleOrdenServicio.setDescripcionEstado("LAVADO");
+                        break;
+                    case 5:
+                        eDetalleOrdenServicio.setDescripcionEstado("ENCERADO");
+                        break;
+                    case 6:
+                        eDetalleOrdenServicio.setDescripcionEstado("CONCLUIDO");
+                        break;
+                }
+
+                detalleOrdenServicios.add(eDetalleOrdenServicio);
+            }
+        }catch (SQLException ex) {
+            Log.i("listarReserva==> ", ex.getMessage());
+        }
+        return detalleOrdenServicios;
     }
 
     public int actualizarEstadoOrdenServicio(int OrdenID, int EstadoID){
@@ -380,5 +504,20 @@ public class LavaAutoDAO {
             Log.i("reprogramacion==> ", ex.getMessage());
         }
         return filas;
+    }
+
+    public int obtenerMaximaOrdenID (){
+        int OrdenIDMaximo = 0;
+        try {
+            Statement st = conectarBD().createStatement();
+            String sql = "select max(OrdenID) AS MaxOrdenID from ORDENSERVICIO";
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()){
+                OrdenIDMaximo = rs.getInt("MaxOrdenID");
+            }
+        }catch (SQLException ex) {
+            Log.i("obtenerUsuario==> ", ex.getMessage());
+        }
+        return OrdenIDMaximo;
     }
 }

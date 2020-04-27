@@ -70,21 +70,19 @@ public class OrdenServicioFragment extends Fragment {
             TextView txtReservaID = (TextView)item.findViewById(R.id.idTxtReservaID1);
             TextView txtClienteServicio = (TextView)item.findViewById(R.id.idTxtClienteServicio1);
             TextView txtOrdenServicio = (TextView)item.findViewById(R.id.idTxtOrdenServicio1);
-            TextView txtFechaReservaServicio = (TextView)item.findViewById(R.id.idTxtFechaReservaServicio1);
-            TextView txtHoraReservaServicio = (TextView)item.findViewById(R.id.idTxtHoraReservaServicio1);
+            TextView txtEstadoOrden = (TextView)item.findViewById(R.id.idTxtEstadoOrden);
 
 
             txtReservaID.setText(String.valueOf(listarOrdenes.get(position).getOrdenID()));
             txtClienteServicio.setText(listarOrdenes.get(position).getUsuario().getNombre());
             txtOrdenServicio.setText(listarOrdenes.get(position).getServicio().getNombreServicio());
-            txtFechaReservaServicio.setText(listarOrdenes.get(position).getFecReserva());
-            txtHoraReservaServicio.setText(listarOrdenes.get(position).getHorReserva());
+            txtEstadoOrden.setText(listarOrdenes.get(position).getDesEstado());
 
             ImageButton btnEditar= (ImageButton) item.findViewById(R.id.idBtnEditarDetalleReserva);
             btnEditar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Constants.reserva = listarOrdenes.get(position);
+                    Constants.ordenServicio = listarOrdenes.get(position);
                     OrdenServicioDetalleFragment fgOrdenDetalle = new OrdenServicioDetalleFragment();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction ft = fragmentManager.beginTransaction();

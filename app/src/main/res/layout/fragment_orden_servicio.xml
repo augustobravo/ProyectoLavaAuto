@@ -32,7 +32,7 @@
             android:layout_marginBottom="10dp">
 
             <include
-                layout="@layout/header_registro_reserva"
+                layout="@layout/header_registro_orden"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />

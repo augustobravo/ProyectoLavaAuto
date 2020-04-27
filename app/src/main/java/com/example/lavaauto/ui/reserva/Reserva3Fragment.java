@@ -171,7 +171,8 @@ public class Reserva3Fragment extends Fragment {
         df = new SimpleDateFormat("HH:mm:ss");
         String sHoraActual = df.format(calendar.getTime());
 
-        lavaAutoDAO.insertarHistorialEstadoOrdenServicio(eOrdenServicio.getOrdenID(), sFechaActual,sHoraActual ,1);
+        int maximaOrdenID = lavaAutoDAO.obtenerMaximaOrdenID();
+        lavaAutoDAO.insertarHistorialEstadoOrdenServicio(maximaOrdenID, sFechaActual,sHoraActual ,1);
 
         if(respuesta >0){
             Toast.makeText(getActivity(),"Reserva Realizada con Exito", Toast.LENGTH_LONG).show();

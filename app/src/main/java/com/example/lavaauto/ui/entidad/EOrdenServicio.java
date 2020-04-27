@@ -12,6 +12,7 @@ public class EOrdenServicio {
     private String FecReserva;
     private String HorReserva;
     private int Estado;
+    private String DesEstado;
     private int FormaPagoID;
 
     public int getOrdenID() {
@@ -76,6 +77,14 @@ public class EOrdenServicio {
 
     public void setEstado(int estado) {
         Estado = estado;
+    }
+
+    public String getDesEstado() {
+        return DesEstado;
+    }
+
+    public void setDesEstado(String desEstado) {
+        DesEstado = desEstado;
     }
 
     public int getFormaPagoID() {

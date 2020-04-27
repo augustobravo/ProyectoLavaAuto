@@ -60,7 +60,7 @@ public class OrdenServicioDetalleFragment extends Fragment {
         adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
         spEstado.setAdapter(adapter);
 
-        eOrdenServicio = Constants.reserva;
+        eOrdenServicio = Constants.ordenServicio;
 
         lblDocumento.setText(eOrdenServicio.getUsuario().getDocume());
         lblNombres.setText(eOrdenServicio.getUsuario().getNombre());
@@ -90,7 +90,7 @@ public class OrdenServicioDetalleFragment extends Fragment {
 
                 if(sEstado.equals("Servicio Iniciado")){
                     iEstado = 3;
-                }else if(sEstado.equals("Lavado y aspirado")){
+                }else if(sEstado.equals("Lavado y Aspirado")){
                     iEstado = 4;
                 }else if(sEstado.equals("Encerado")){
                     iEstado = 5;

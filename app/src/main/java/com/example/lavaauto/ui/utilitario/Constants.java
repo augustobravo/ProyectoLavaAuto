@@ -12,5 +12,4 @@ public final class Constants {
     public static EDireccion direccion;
     public static EAuto auto;
     public static EOrdenServicio ordenServicio;
-    public static EOrdenServicio reserva;
 }

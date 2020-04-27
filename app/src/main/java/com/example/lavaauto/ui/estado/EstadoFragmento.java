@@ -5,17 +5,20 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import com.example.lavaauto.R;
 import com.example.lavaauto.dao.LavaAutoDAO;
 import com.example.lavaauto.ui.entidad.EOrdenServicio;
+import com.example.lavaauto.ui.supervisor.OrdenServicioDetalleFragment;
 import com.example.lavaauto.ui.utilitario.Constants;
 import java.util.ArrayList;
 
@@ -28,19 +31,10 @@ public class EstadoFragmento extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_estado, container, false);
 
-    /*  listarOrdenServicios =new ArrayList<EDetalleEstado>();
-        listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20102", "estado_pendiente"));
-        listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20105", "estado_progreso"));
-        listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20110", "Estado_completada"));
-        listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20111", "Estado_completada"));
-        listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20112", "Estado_completada"));
-        listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20113", "Estado_completada"));
-        listarOrdenServicios.add(new EDetalleEstado("Orden Servicio 20114", "Estado_completada"));*/
-
-       listarOrdenServicios = new LavaAutoDAO().obtenerOrdenesServicio(Constants.usuario.getUsuarioID());
+        listarOrdenServicios = new LavaAutoDAO().obtenerOrdenesServicioCliente(Constants.usuario.getUsuarioID());
         AdaptadorServicios adaptador = new AdaptadorServicios(getActivity());
-        ListView lv1 = (ListView) view.findViewById(R.id.idLvOrdenServicio);
-        lv1.setAdapter(adaptador);
+        ListView lvServicioCliente = (ListView) view.findViewById(R.id.idLvOrdenServicio);
+        lvServicioCliente.setAdapter(adaptador);
         return view;
     }
 
@@ -53,64 +47,34 @@ public class EstadoFragmento extends Fragment {
 
             View item = LayoutInflater.from(getContext()).inflate(R.layout.solicitud_servicio, null);
             TextView txtordenservicio = (TextView)item.findViewById(R.id.idTxtOrdenServicio);
-            TextView txtusuarioID = (TextView)item.findViewById(R.id.idTxtUsuario);
-           // TextView txtservicio = (TextView) item.findViewById(R.id.idTxtServicio);
+            TextView txtNombreCliente = (TextView)item.findViewById(R.id.idTxtNombreCliente);
             TextView txtfecha = (TextView)item.findViewById(R.id.idTxtfecha);
             TextView txtestado = (TextView)item.findViewById(R.id.idTxtestado);
+            ImageButton btnVerDetalle = (ImageButton) item.findViewById(R.id.idBtnVerDetalleCliente);
 
             txtordenservicio.setText(String.valueOf(listarOrdenServicios.get(position).getOrdenID()));
-            //txtusuarioID.setText(Integer.toString(listarOrdenServicios.get(position).getUsuarioID()));
-            //txtservicio.setText(Integer.toString(listarOrdenServicios.get(position).getServicioID()));
+            txtNombreCliente.setText(listarOrdenServicios.get(position).getUsuario().getNombre());
             txtfecha.setText(listarOrdenServicios.get(position).getFecReserva());
-            txtestado.setText(Integer.toString(listarOrdenServicios.get(position).getEstado()));
+            txtestado.setText(listarOrdenServicios.get(position).getDesEstado());
 
-            RadioButton rbSeleccion = (RadioButton)item.findViewById(R.id.idRbSeleccionar);
-            rbSeleccion.setChecked(position == selectedPosition);
-            rbSeleccion.setTag(position);
-            rbSeleccion.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    selectedPosition = (Integer)view.getTag();
-                   // notifyDataSetChanged();
-                    Constants.ordenServicio = listarOrdenServicios.get(position);
-                }
-            });
-
-           /* if (listarOrdenServicios.get(position).getImagen() =="estado_pendiente")
-                imageView1.setImageResource(R.mipmap.estado_pendiente);
-            else  if (listarOrdenServicios.get(position).getImagen() =="estado_progreso")
-                imageView1.setImageResource(R.mipmap.estado_progreso);
-            else {
-                imageView1.setImageResource(R.mipmap.estado_completada);
-            }*/
-
-          /*  btnDetalle.setOnClickListener(new View.OnClickListener() {
+            btnVerDetalle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (position == 0){
-                        cambiarFragmentoDetalleServicio();
-                        DetalleEstadoFragmento fgDetalleFragmento = new DetalleEstadoFragmento();
-                       // fgDetalleFragmento.setDetalleFragmento(eDetalleEstado);
-                        FragmentManager fragmentManager = getFragmentManager();
-                        FragmentTransaction ft = fragmentManager.beginTransaction();
-                        ft.replace(R.id.nav_host_fragment,fgDetalleFragmento);
-                        ft.addToBackStack(null);
-                        ft.commit();
-                    }
+                    Constants.ordenServicio = listarOrdenServicios.get(position);
+                    cambiarFragmentoDetalleServicio();
                 }
-            });*/
+            });
             return(item);
         }
 
         private void cambiarFragmentoDetalleServicio(){
-            Fragment detalleEstadoFragmento = new DetalleEstadoFragmento();
-            if (detalleEstadoFragmento != null) {
-                FragmentManager fragmentManager = getFragmentManager();
+            DetalleEstadoFragmento fgDetalleEstado = new DetalleEstadoFragmento();
 
-                fragmentManager.beginTransaction()
-                        .add(R.id.idfrmServicio, detalleEstadoFragmento).commit();
-
-            }
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.replace(R.id.nav_host_fragment,fgDetalleEstado);
+            ft.addToBackStack(null);
+            ft.commit();
         }
     }
 }

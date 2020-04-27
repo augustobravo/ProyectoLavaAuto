@@ -55,7 +55,7 @@ public class ReprogramarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reprogramar, container, false);
 
         txtFechaServicio = (EditText) view.findViewById(R.id.txtFechaServicioRepro);
-        txtFechaServicio.setText(Constants.reserva.getFecReserva());
+        txtFechaServicio.setText(Constants.ordenServicio.getFecReserva());
         txtFechaServicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +81,7 @@ public class ReprogramarFragment extends Fragment {
         });
 
         txtHoraServicio = (EditText) view.findViewById(R.id.txtHoraServicioRepro);
-        txtHoraServicio.setText(Constants.reserva.getHorReserva());
+        txtHoraServicio.setText(Constants.ordenServicio.getHorReserva());
         txtHoraServicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,14 +127,14 @@ public class ReprogramarFragment extends Fragment {
                 try {
                     Date fecha = sdf.parse(txtFechaServicio.getText().toString());
                     sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    Constants.reserva.setFecReserva(sdf.format(fecha));
+                    Constants.ordenServicio.setFecReserva(sdf.format(fecha));
                 } catch (ParseException ex) {
                     Log.v("Exception", ex.getLocalizedMessage());
                 }
 
-                Constants.reserva.setHorReserva(txtHoraServicio.getText().toString());
+                Constants.ordenServicio.setHorReserva(txtHoraServicio.getText().toString());
 
-                int fila = new LavaAutoDAO().reprogramarOrdenServicio(Constants.reserva.getOrdenID(), Constants.reserva.getFecReserva(),Constants.reserva.getHorReserva());
+                int fila = new LavaAutoDAO().reprogramarOrdenServicio(Constants.ordenServicio.getOrdenID(), Constants.ordenServicio.getFecReserva(),Constants.ordenServicio.getHorReserva());
 
                 Toast.makeText(getActivity(),"Reprogramacion Realizada", Toast.LENGTH_LONG).show();
 

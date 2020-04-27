@@ -47,7 +47,7 @@ public class SolicitudServicioDetalleFragment extends Fragment {
         TextView lblFecha = (TextView) view.findViewById(R.id.textView55);
         TextView lblHora = (TextView) view.findViewById(R.id.textView57);
         TextView lblFormaPago = (TextView) view.findViewById(R.id.textView60);
-        eOrdenServicio = Constants.reserva;
+        eOrdenServicio = Constants.ordenServicio;
 
         lblDocumento.setText(eOrdenServicio.getUsuario().getDocume());
         lblNombres.setText(eOrdenServicio.getUsuario().getNombre());
