@@ -28,6 +28,10 @@
             android:id="@+id/nav_contacto"
             android:icon="@mipmap/supe8"
             android:title="Contacto" />
+        <item
+            android:id="@+id/nav_boleta"
+            android:icon="@mipmap/pago"
+            android:title="Boleta pago" />
 
     </group>
 
