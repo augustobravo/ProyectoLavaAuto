@@ -37,21 +37,15 @@
         tools:layout="@layout/fragment_detalle_estado" />
 
     <fragment
-        android:id="@+id/nav_reserva_2"
-        android:name="com.example.lavaauto.ui.reserva.Reserva2Fragment"
-        android:label="@string/menu_reserva"
-        tools:layout="@layout/fragment_reserva_2" />
-
-    <fragment
         android:id="@+id/nav_supervisor"
         android:name="com.example.lavaauto.ui.supervisor.MenuSupervisorFragment"
-        android:label="Supervisor"
+        android:label="@string/menu_supervisor"
         tools:layout="@layout/fragment_menu_supervisor" />
 
     <fragment
         android:id="@+id/nav_contacto"
         android:name="com.example.lavaauto.ContactoFragment"
-        android:label="Contacto"
+        android:label="@string/menu_contacto"
         tools:layout="@layout/fragment_contacto" />
 
 </navigation>

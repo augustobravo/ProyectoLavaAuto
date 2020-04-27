@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         LavaAutoDAO lavaAutoDAO = new LavaAutoDAO();
         EditText txtdocumento = (EditText)findViewById(R.id.txtDocumento);
         EditText txtpassword = (EditText) findViewById(R.id.txtPassword);
-        txtdocumento.setText("12345678");
-        txtpassword.setText("123456");
+        //txtdocumento.setText("12345678");
+        //txtpassword.setText("123456");
         EUsuario usuario = lavaAutoDAO.obtenerUsuario(txtdocumento.getText().toString(), txtpassword.getText().toString());
         String resultado = "";
         if (txtdocumento.length() == 0){
@@ -77,13 +77,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         Toast.makeText(this,resultado,Toast.LENGTH_SHORT).show();
         if(usuario != null) {
             Constants.usuario = usuario;
-            //Intent menuNavegable = new Intent(this, MenuNavegable.class);
-            //startActivity(menuNavegable);
+            Intent menuNavegable = new Intent(this, MenuNavegable.class);
+            startActivity(menuNavegable);
         }else{
             Toast.makeText(this, "Usuario Incorrecto",Toast.LENGTH_SHORT).show();
         }
-        Intent menuNavegable = new Intent(this, MenuNavegable.class);
-        startActivity(menuNavegable);
+
     }
     public void registrarUsuario (View view) {
         Intent registrarUsuario = new Intent(this, RegistroUsuario.class);

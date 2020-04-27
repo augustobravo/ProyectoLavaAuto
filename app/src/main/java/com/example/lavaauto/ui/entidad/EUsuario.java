@@ -7,9 +7,9 @@ public class EUsuario {
     private int UsuarioID;
     private String Docume;
     private String Nombre;
-    private Date FecNac;
+    private String FecNac;
     private String Password;
-    private Date FecReg;
+    private String FecReg;
 
     public int getUsuarioID() {
         return UsuarioID;
@@ -35,11 +35,11 @@ public class EUsuario {
         Nombre = nombre;
     }
 
-    public Date getFecNac() {
+    public String getFecNac() {
         return FecNac;
     }
 
-    public void setFecNac(Date fecNac) {
+    public void setFecNac(String fecNac) {
         FecNac = fecNac;
     }
 
@@ -51,11 +51,11 @@ public class EUsuario {
         Password = password;
     }
 
-    public Date getFecReg() {
+    public String getFecReg() {
         return FecReg;
     }
 
-    public void setFecReg(Date fecReg) {
+    public void setFecReg(String fecReg) {
         FecReg = fecReg;
     }
 }

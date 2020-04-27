@@ -14,6 +14,8 @@
     <string name="menu_reserva">Solicitud</string>
     <string name="menu_estado">Historial</string>
     <string name="menu_cliente">Perfil</string>
+    <string name="menu_supervisor">Supervisor</string>
+    <string name="menu_contacto">Contacto</string>
     <string name="menu_detalle_servicio">Detalle Servicio</string>
 
     <string name="home_second">Home Second</string>

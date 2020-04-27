@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.lavaauto.R;
@@ -38,10 +39,13 @@ public class RegistroServicioFragment extends Fragment {
 
         TextView txtServicioID = (TextView)view.findViewById(R.id.txtServicioID3);
         TextView txtServicio = (TextView)view.findViewById(R.id.txtNombreServicio3);
+        ImageView imgServicio = (ImageView) view.findViewById(R.id.idIvServicio);
+
         txtPrecio = (EditText)view.findViewById(R.id.idTxtPrecio1);
         txtServicioID.setText(String.valueOf(eServicio.getServicioID()));
         txtServicio.setText(eServicio.getNombreServicio());
         txtPrecio.setText(String.valueOf(eServicio.getPrecio()));
+        imgServicio.setImageResource(eServicio.getImagenID());
 
         ImageButton btnSalir = (ImageButton) view.findViewById(R.id.imageButton6);
         ImageButton btnAceptar = (ImageButton) view.findViewById(R.id.imageButton5);

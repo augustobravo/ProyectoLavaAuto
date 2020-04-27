@@ -45,6 +45,8 @@ public class DetalleEstadoFragmento extends Fragment{
         TextView lblDireccion = (TextView) view.findViewById(R.id.textView65);
         TextView lblAutomovil = (TextView) view.findViewById(R.id.textView66);
         TextView lblFormaPago = (TextView) view.findViewById(R.id.textView67);
+        TextView lblMonto = (TextView) view.findViewById(R.id.txtMonto);
+
         eOrdenServicio = Constants.ordenServicio;
 
         lblDocumento.setText(eOrdenServicio.getUsuario().getDocume());
@@ -60,6 +62,7 @@ public class DetalleEstadoFragmento extends Fragment{
         }else{
             lblFormaPago.setText("Transferencia electrónica");
         }
+        lblMonto.setText(String.valueOf(eOrdenServicio.getServicio().getPrecio()));
 
         ImageButton btnSalir = (ImageButton) view.findViewById(R.id.idBtnCancelar2);
         btnSalir.setOnClickListener(new View.OnClickListener() {

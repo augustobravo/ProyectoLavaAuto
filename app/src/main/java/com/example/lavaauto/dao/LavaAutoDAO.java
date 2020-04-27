@@ -48,6 +48,12 @@ public class LavaAutoDAO {
                 usuarioEncontrado.setUsuarioID(rs.getInt("UsuarioID"));
                 usuarioEncontrado.setDocume(rs.getString("Docume"));
                 usuarioEncontrado.setNombre(rs.getString("Nombre"));
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String strDate = dateFormat.format(rs.getDate("FecNac"));
+                usuarioEncontrado.setFecNac(strDate);
+                dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String strDate2 = dateFormat.format(rs.getTime("FecReg"));
+                usuarioEncontrado.setFecReg(strDate2);
             }
         }catch (SQLException ex) {
             Log.i("obtenerUsuario==> ", ex.getMessage());
