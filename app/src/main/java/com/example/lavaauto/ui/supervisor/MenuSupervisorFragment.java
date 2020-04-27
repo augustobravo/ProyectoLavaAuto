@@ -50,6 +50,18 @@ public class MenuSupervisorFragment extends Fragment {
                 ft.commit();
             }
         });
+
+        btnOpcion3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListaServicioFragment fgRegistroServicio = new ListaServicioFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.nav_host_fragment, fgRegistroServicio);
+                ft.commit();
+            }
+        });
+
         return view;
     }
 }

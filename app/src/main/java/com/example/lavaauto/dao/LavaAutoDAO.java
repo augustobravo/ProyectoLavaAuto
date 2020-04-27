@@ -520,4 +520,42 @@ public class LavaAutoDAO {
         }
         return OrdenIDMaximo;
     }
+
+    public ArrayList<EServicio> listarServicio(){
+        ArrayList<EServicio> servicios = new ArrayList<EServicio>();
+        try {
+            Statement st = conectarBD().createStatement();
+            String sql = "select ServicioID, Descripcion, Precio, ImagenID from SERVICIO";
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()){
+                EServicio eServicio = new EServicio();
+                eServicio.setServicioID(rs.getInt("ServicioID"));
+                eServicio.setNombreServicio(rs.getString("Descripcion"));
+                eServicio.setPrecio(rs.getDouble("Precio"));
+                eServicio.setImagenID(rs.getInt("ImagenID"));
+                servicios.add(eServicio);
+            }
+        }catch (SQLException ex) {
+            Log.i("listarServicio==> ", ex.getMessage());
+        }
+        return servicios;
+    }
+
+    public int actualizaPrecioServicio(int ServicioID, double Precio){
+        int filas = 0;
+        try {
+            String sql ="update SERVICIO set Precio = ? where ServicioID = ? ";
+            PreparedStatement pst= conectarBD().prepareStatement(sql);
+            pst.setDouble(1, Precio);
+            pst.setInt(2, ServicioID);
+
+            filas = pst.executeUpdate();
+
+        }catch (SQLException ex){
+            Log.i("actualizaservicio==> ", ex.getMessage());
+        }
+        return filas;
+    }
+
 }
