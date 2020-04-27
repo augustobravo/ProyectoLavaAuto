@@ -33,7 +33,6 @@ public class ContactoFragment extends Fragment implements OnMapReadyCallback {
         mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
        // return inflater.inflate(R.layout.fragment_contacto, container, false);
-
         return view;
     }
 
