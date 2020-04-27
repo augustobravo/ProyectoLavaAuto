@@ -75,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:background="@color/colorPrimary"
-                        android:text="Cliente"
+                        android:text="Servicio"
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold" />

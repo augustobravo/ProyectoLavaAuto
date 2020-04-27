@@ -53,7 +53,7 @@ public class EstadoFragmento extends Fragment {
             ImageButton btnVerDetalle = (ImageButton) item.findViewById(R.id.idBtnVerDetalleCliente);
 
             txtordenservicio.setText(String.valueOf(listarOrdenServicios.get(position).getOrdenID()));
-            txtNombreCliente.setText(listarOrdenServicios.get(position).getUsuario().getNombre());
+            txtNombreCliente.setText(listarOrdenServicios.get(position).getServicio().getNombreServicio());
             txtfecha.setText(listarOrdenServicios.get(position).getFecReserva());
             txtestado.setText(listarOrdenServicios.get(position).getDesEstado());
 
