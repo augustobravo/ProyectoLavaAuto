@@ -100,7 +100,7 @@ public class Reserva2Fragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     LavaAutoDAO lavaAutoDAO = new LavaAutoDAO();
-                    lavaAutoDAO.eliminarDireccion(listarAutos.get(position).getUsuarioAutoID());
+                    lavaAutoDAO.eliminarAuto(listarAutos.get(position).getUsuarioAutoID());
                     // adapter.remove(adapter.getItem(position));
                     notifyDataSetChanged();
                     Toast.makeText(getActivity(),"Registro Eliminado", Toast.LENGTH_LONG).show();

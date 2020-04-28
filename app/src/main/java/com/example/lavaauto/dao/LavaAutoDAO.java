@@ -37,6 +37,24 @@ public class LavaAutoDAO {
         return conexion;
     }
 
+    public int registrarUsuario(EUsuario usuario){
+        int filas = 0;
+        try {
+            String sql ="insert into USUARIO values (?,?,?,?,?)";
+            PreparedStatement pst= conectarBD().prepareStatement(sql);
+            pst.setString(1, usuario.getDocume());
+            pst.setString(2, usuario.getNombre());
+            pst.setString(3, usuario.getFecNac());
+            pst.setString(4, usuario.getPassword());
+            pst.setString(5, usuario.getFecReg());
+            filas = pst.executeUpdate();
+
+        }catch (SQLException ex){
+            Log.i("registrarUsuario==> ", ex.getMessage());
+        }
+        return filas;
+    }
+
     public EUsuario obtenerUsuario(String documento, String password){
         EUsuario usuarioEncontrado = null;
         try {

@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         if (txtpassword.length() == 0){
             resultado = resultado + "Falta Contraseña ";
         }
-        Toast.makeText(this,resultado,Toast.LENGTH_SHORT).show();
+
         if(usuario != null) {
             Constants.usuario = usuario;
             Intent menuNavegable = new Intent(this, MenuNavegable.class);
